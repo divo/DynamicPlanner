@@ -7,54 +7,61 @@
 
 import SwiftUI
 
-struct Element: Identifiable {
-  let id = UUID()
+protocol MDElement: View, Identifiable {
+  var id: Int { get }
+}
+
+struct TextElement: MDElement {
+  var id: Int
   let data: String
-  let type: String
+  var weight: Int = 1
+
+  var body: some View {
+    Text(data)
+      .fontWeight(fontWeight)
+  }
   
-  func buildView() -> AnyView {
-    switch type {
-    case "Button": return AnyView( Button(data, action: {
-      print("Press")
-    }))
-    case "Text": return AnyView( Text(data) )
-    default: return AnyView(EmptyView())
+  var fontWeight: Font.Weight {
+    switch self.weight {
+    case 1:
+      return .heavy
+    case 2:
+      return .bold
+    default:
+      return .regular
     }
   }
 }
 
+struct TextFieldElement: MDElement {
+  var id: Int
+  @State var data: String = ""
+  
+  var body: some View {
+    TextField("", text: $data)
+  }
+}
+
 struct ContentView : View {
+  @State var stateString = "# This is some text\n \n# And some more text"
   @State var elements = [
-    Element(data: "John", type: "Text"),
-    Element(data: "Alice", type: "Button"),
-    Element(data: "Bob", type: "Text")
+    TextElement(id: 1, data: "Test")
   ]
   
   // 2
   var body: some View {
+    TextEditor(text: $stateString)
+    
     List {
-      ForEach(0..<$elements.count, id: \.self) { index in
-        elements[index].buildView()
+      ForEach(stateString.split(separator: "\n"), id: \.self) { string in
+        let tokens = String(string).split(separator: " ") // Has to be better way than this nonsense
+        if string.first == "#" {
+          TextElement(id: 1, data: String(string.drop(while: { c in c == "#" })), weight: tokens.first?.count ?? 1)
+        } else if(string.first == " ") {
+          TextFieldElement(id: 2)
+        }
       }
     }
-    
-    HStack {
-      Button {
-        elements.append(Element(data: "Hi", type: "Text"))
-      } label: {
-        Text("Append text")
-      }
-      
-      Button {
-        elements.append(Element(data: "Test", type: "Button"))
-      } label: {
-        Text("Append button")
-      }
-
-      
-    }
-    
   }
-  
 }
 
