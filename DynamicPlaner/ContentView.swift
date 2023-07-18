@@ -53,7 +53,7 @@ struct TextFieldElement: MDElement {
 
 struct ContentView : View {
   @State var stateString = "# This is some text\n \n# And some more text"
-  @State var elements: [any MDElement] = []
+  @State var elements: [AnyView] = [AnyView(Text("Compile time view"))]
   
   // 2
   var body: some View {
@@ -61,13 +61,13 @@ struct ContentView : View {
       TextEditor(text: $stateString)
       
       Button("Serialize") {
-//        print(elements.map({ e in e.toString() }))
+        print(elements.map({ e in (e as? any MDElement)?.toString() }))
       }
       
+      
       List {
-        // How tf do I draw these dam things
         ForEach(0..<$elements.count, id: \.self) { element in
-          elements[element] // Why the fuck can't I have an array of views? What am I missing?
+          elements[element] // Why can't I have an array of views? What am I missing?
         }
       }
       
@@ -75,9 +75,9 @@ struct ContentView : View {
       stateString.split(separator: "\n").map { string  in
         let tokens = String(string).split(separator: " ") // Has to be better way than this nonsense
         if string.first == "#" {
-          elements.append(TextElement(id: 1, data: String(string.drop(while: { c in c == "#" })), weight: tokens.first?.count ?? 1))
+          elements.append(AnyView(TextElement(id: 1, data: String(string.drop(while: { c in c == "#" })), weight: tokens.first?.count ?? 1)))
         } else if(string.first == " ") {
-          elements.append(TextFieldElement(id: 2))
+          elements.append(AnyView(TextFieldElement(id: 2)))
         }
       }
     }
