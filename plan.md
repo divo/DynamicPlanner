@@ -25,3 +25,6 @@ The only way to do this seems to be using TypeErasure.
 1. Use type erasure on the on the View array and possibly screw performance.
     I don't think this is too fruitful. The type erased array also seems pretty useless as I can no longer get at the underlying views. 
 2. Draw the views based on the MD content and have some way of binding out just the state so I can pull that later. An array/hash for each type inside a view model keyed by id might do it.
+
+# Next
+Read the Sundell articles branching from https://www.swiftbysundell.com/articles/avoiding-anyview-in-swiftui/. ViewBuilders look promising for what I want to do.
