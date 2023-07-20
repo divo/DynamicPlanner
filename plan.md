@@ -28,3 +28,4 @@ The only way to do this seems to be using TypeErasure.
 
 # Next
 Read the Sundell articles branching from https://www.swiftbysundell.com/articles/avoiding-anyview-in-swiftui/. ViewBuilders look promising for what I want to do.
+    Still have a problem storing an array of Views. Swift is not happy with types that conform to protocl in a "some" array of said protocol. "any View cannot conform to View"

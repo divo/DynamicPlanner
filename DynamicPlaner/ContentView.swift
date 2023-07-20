@@ -16,7 +16,7 @@ struct TextElement: MDElement {
   var id: Int
   let data: String
   var weight: Int = 1
-
+  
   var body: some View {
     Text(data)
       .fontWeight(fontWeight)
@@ -53,7 +53,12 @@ struct TextFieldElement: MDElement {
 
 struct ContentView : View {
   @State var stateString = "# This is some text\n \n# And some more text"
-  @State var elements: [AnyView] = [AnyView(Text("Compile time view"))]
+  @State var elements: [any MDElement] = [TextElement(id: 1, data: "Compile time view")]
+  
+  @ViewBuilder func element(index: Int) -> some View {
+//    elements[index] as View
+    TextElement(id: 1, data: "view builder") // This works fine
+  }
   
   // 2
   var body: some View {
@@ -66,8 +71,8 @@ struct ContentView : View {
       
       
       List {
-        ForEach(0..<$elements.count, id: \.self) { element in
-          elements[element] // Why can't I have an array of views? What am I missing?
+        ForEach(0..<$elements.count, id: \.self) { ele in
+          element(index: ele)
         }
       }
       
@@ -75,9 +80,9 @@ struct ContentView : View {
       stateString.split(separator: "\n").map { string  in
         let tokens = String(string).split(separator: " ") // Has to be better way than this nonsense
         if string.first == "#" {
-          elements.append(AnyView(TextElement(id: 1, data: String(string.drop(while: { c in c == "#" })), weight: tokens.first?.count ?? 1)))
+          //          elements.append(TextElement(id: 1, data: String(string.drop(while: { c in c == "#" })), weight: tokens.first?.count ?? 1))
         } else if(string.first == " ") {
-          elements.append(AnyView(TextFieldElement(id: 2)))
+          elements.append(TextFieldElement(id: 2))
         }
       }
     }
