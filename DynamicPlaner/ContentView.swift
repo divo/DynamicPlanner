@@ -51,13 +51,29 @@ struct TextFieldElement: MDElement {
   }
 }
 
+// This thing needs to have @Published arrays I can use to bind to view elements
+class ViewModel {
+  @Published var text: String
+  
+  init(text: String = "View Model") {
+    self.text = text
+  }
+}
+
+struct TextView2: View {
+  @Binding var state: String
+  
+  var body: some View {
+    TextField("", text: $state)
+  }
+}
+
 struct ContentView : View {
   @State var stateString = "# This is some text\n \n# And some more text"
-  @State var elements: [any MDElement] = [TextElement(id: 1, data: "Compile time view")]
+  @State var vm: [ViewModel] = [ViewModel()]
   
-  @ViewBuilder func element(index: Int) -> some View {
-//    elements[index] as View
-    TextElement(id: 1, data: "view builder") // This works fine
+  @ViewBuilder func render(vm: Binding<ViewModel>) -> some View {
+    TextView2(state: vm.text)
   }
   
   // 2
@@ -66,13 +82,15 @@ struct ContentView : View {
       TextEditor(text: $stateString)
       
       Button("Serialize") {
-        print(elements.map({ e in (e as? any MDElement)?.toString() }))
+        print(vm.map({ vm in
+          vm.text
+        }))
       }
       
       
       List {
-        ForEach(0..<$elements.count, id: \.self) { ele in
-          element(index: ele)
+        ForEach(0..<$vm.count, id: \.self) { element in
+          render(vm: $vm[element])
         }
       }
       
@@ -82,7 +100,7 @@ struct ContentView : View {
         if string.first == "#" {
           //          elements.append(TextElement(id: 1, data: String(string.drop(while: { c in c == "#" })), weight: tokens.first?.count ?? 1))
         } else if(string.first == " ") {
-          elements.append(TextFieldElement(id: 2))
+          vm.append(ViewModel(text: "Appended"))
         }
       }
     }
