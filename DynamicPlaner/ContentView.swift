@@ -7,37 +7,6 @@
 
 import SwiftUI
 
-protocol MDElement: View, Identifiable {
-  var id: Int { get }
-  func toString() -> String
-}
-
-struct TextElement: MDElement {
-  var id: Int
-  let data: String
-  var weight: Int = 1
-  
-  var body: some View {
-    Text(data)
-      .fontWeight(fontWeight)
-  }
-  
-  func toString() -> String {
-    "# \(data)"
-  }
-  
-  var fontWeight: Font.Weight {
-    switch self.weight {
-    case 1:
-      return .heavy
-    case 2:
-      return .bold
-    default:
-      return .regular
-    }
-  }
-}
-
 // This thing needs to have @Published arrays I can use to bind to view elements
 // A subclass for each view type and a view builder that knows how to draw them.
 // Probably cleaner to have a subclass for each View too, but all that logic
@@ -46,18 +15,21 @@ struct TextElement: MDElement {
 // everything else up to the subclasses. This is all very fucking annoying
 class ViewModel {
   @Published var text: String
+  @Published var done: Bool
   let weight: Int
   let type: ViewType //TODO: Push this information into subclasses(?)
   
   enum ViewType {
     case text
     case textField
+    case checkBox
   }
   
-  init(text: String = "View Model", type: ViewType, weight: Int = 1) {
+  init(text: String = "View Model", type: ViewType, weight: Int = 1, done: Bool = false) {
     self.text = text
     self.type = type
     self.weight = weight
+    self.done = done
   }
   
   func toString() -> String {
@@ -98,6 +70,18 @@ struct TextFieldView: View {
   }
 }
 
+struct CheckBoxView: View  {
+  @Binding var text: String
+  @Binding var done: Bool
+  
+  var body: some View {
+    HStack {
+      Toggle("", isOn: $done)
+      Text(text)
+    }
+  }
+}
+
 struct ContentView : View {
   @State var stateString = "# This is some text\n \n# And some more text"
   @State var vm: [ViewModel] = []
@@ -108,6 +92,8 @@ struct ContentView : View {
       TextView(state: vm.text, weight: vm.wrappedValue.weight)
     case .textField:
       TextFieldView(state: vm.text)
+    case .checkBox:
+      CheckBoxView(text: vm.text, done: vm.done)
     }
   }
   
@@ -121,7 +107,6 @@ struct ContentView : View {
           vm.toString()
         }))
       }
-      
       
       List {
         ForEach(0..<$vm.count, id: \.self) { element in
@@ -146,6 +131,10 @@ struct ContentView : View {
         result.append(ViewModel(text: text, type: .text, weight: tokens.first?.count ?? 1))
       } else if(string.first == " ") {
         result.append(ViewModel(text: "", type: .textField))
+      } else if(string.first == "-" && string.count > 4) {
+        // -[x]
+        let text = String(string.dropFirst(5))
+        result.append(ViewModel(text: text, type: .checkBox, done: false))
       }
     }
     
