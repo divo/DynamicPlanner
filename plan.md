@@ -27,5 +27,6 @@ The only way to do this seems to be using TypeErasure.
 2. Draw the views based on the MD content and have some way of binding out just the state so I can pull that later. An array/hash for each type inside a view model keyed by id might do it.
 
 # Next
-Read the Sundell articles branching from https://www.swiftbysundell.com/articles/avoiding-anyview-in-swiftui/. ViewBuilders look promising for what I want to do.
-    Still have a problem storing an array of Views. Swift is not happy with types that conform to protocl in a "some" array of said protocol. "any View cannot conform to View"
+I need a plan. Write it out what are the spikes I need to do to unblock each part. So far 1) Type information in subclasses, 2) Deserialization and tokenizatio, 3) Serialization 4) Elements (Text, TextField, TextEditor, Checkbox, Reminder, Multiselect, Addition button! (this will be spicey)) 5) UI 6) Behaviours. That's all I can think of for now.
+
+
