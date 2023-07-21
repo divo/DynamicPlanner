@@ -38,29 +38,59 @@ struct TextElement: MDElement {
   }
 }
 
-struct TextFieldElement: MDElement {
-  var id: Int
-  @State var data: String = ""
+// This thing needs to have @Published arrays I can use to bind to view elements
+// A subclass for each view type and a view builder that knows how to draw them.
+// Probably cleaner to have a subclass for each View too, but all that logic
+// could live in a big ViewBuilder function too.
+// TODO: Abstract or something else? I need an abstract class that defines a text function, and leave
+// everything else up to the subclasses. This is all very fucking annoying
+class ViewModel {
+  @Published var text: String
+  let weight: Int
+  let type: ViewType //TODO: Push this information into subclasses(?)
   
-  var body: some View {
-    TextField("", text: $data)
+  enum ViewType {
+    case text
+    case textField
+  }
+  
+  init(text: String = "View Model", type: ViewType, weight: Int = 1) {
+    self.text = text
+    self.type = type
+    self.weight = weight
   }
   
   func toString() -> String {
-    " \(data)"
+    text
   }
 }
 
-// This thing needs to have @Published arrays I can use to bind to view elements
-class ViewModel {
-  @Published var text: String
+struct TextView: View {
+  @Binding var state: String
+  var weight: Int = 1
   
-  init(text: String = "View Model") {
-    self.text = text
+  var body: some View {
+    Text(state)
+      .fontWeight(fontWeight)
+  }
+  
+  func toString() -> String {
+    "# \(state)"
+  }
+  
+  var fontWeight: Font.Weight {
+    switch self.weight {
+    case 1:
+      return .heavy
+    case 2:
+      return .bold
+    default:
+      return .regular
+    }
   }
 }
 
-struct TextView2: View {
+struct TextFieldView: View {
   @Binding var state: String
   
   var body: some View {
@@ -70,10 +100,15 @@ struct TextView2: View {
 
 struct ContentView : View {
   @State var stateString = "# This is some text\n \n# And some more text"
-  @State var vm: [ViewModel] = [ViewModel()]
+  @State var vm: [ViewModel] = []
   
   @ViewBuilder func render(vm: Binding<ViewModel>) -> some View {
-    TextView2(state: vm.text)
+    switch vm.wrappedValue.type {
+    case .text:
+      TextView(state: vm.text, weight: vm.wrappedValue.weight)
+    case .textField:
+      TextFieldView(state: vm.text)
+    }
   }
   
   // 2
@@ -83,7 +118,7 @@ struct ContentView : View {
       
       Button("Serialize") {
         print(vm.map({ vm in
-          vm.text
+          vm.toString()
         }))
       }
       
@@ -95,15 +130,26 @@ struct ContentView : View {
       }
       
     }.onAppear {
-      stateString.split(separator: "\n").map { string  in
-        let tokens = String(string).split(separator: " ") // Has to be better way than this nonsense
-        if string.first == "#" {
-          //          elements.append(TextElement(id: 1, data: String(string.drop(while: { c in c == "#" })), weight: tokens.first?.count ?? 1))
-        } else if(string.first == " ") {
-          vm.append(ViewModel(text: "Appended"))
-        }
+      vm = deserialize(state: stateString)
+    }
+    .onChange(of: stateString, perform: { newValue in
+      vm = deserialize(state: stateString)
+    })
+  }
+  
+  func deserialize(state: String) -> [ViewModel] {
+    var result: [ViewModel] = []
+    state.split(separator: "\n").map { string in
+      let tokens = String(string).split(separator: " ") // Has to be better way than this nonsense
+      if string.first == "#" {
+        let text = String(string.drop(while: { c in c == "#" }))
+        result.append(ViewModel(text: text, type: .text, weight: tokens.first?.count ?? 1))
+      } else if(string.first == " ") {
+        result.append(ViewModel(text: "", type: .textField))
       }
     }
+    
+    return result
   }
 }
 
