@@ -35,9 +35,8 @@ struct ContentView : View {
       TextEditor(text: $stateString)
       
       Button("Serialize") {
-        print(vm.models.map({ vm in
-          vm.toString()
-        }))
+        let result = vm.models.map { vm in vm.toString() }.joined(separator: "\n")
+        print(result)
       }
       
       List {
@@ -58,17 +57,18 @@ struct ContentView : View {
     var result: [BaseModel] = []
     state.components(separatedBy: .newlines).map { string in
       let tokens = String(string).split(separator: " ") // Has to be better way than this nonsense
-      if(string == "") {
-        result.append(TextFieldModel())
-      } else if(string.first == "-" && string.count > 4) {
+      if(string.first == "-" && string.count > 4) {
         let text = String(string.dropFirst(5))
         let done = Array(string)[2] == "x"
         result.append(CheckBoxModel(text: text, done: done))
       } else if string.first == "#" {
         let text = String(string.drop(while: { c in c == "#" }).drop(while: { c in c == " " }))
         result.append(TextViewModel(text: text, weight: tokens.first?.count ?? 1))
+      } else if string == ""{
+        result.append(TextFieldModel())
       } else if string.first?.isASCII != nil && string.first!.isASCII {
-        result.append(TextViewModel(text: String(string)))
+//        result.append(TextViewModel(text: String(string)))
+        result.append(TextFieldModel(text: String(string)))
       }
     }
     

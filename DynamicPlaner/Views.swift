@@ -15,11 +15,7 @@ struct TextView: View {
     Text(text)
       .fontWeight(fontWeight)
   }
-  
-  func toString() -> String {
-    "# \(text)"
-  }
-  
+   
   var fontWeight: Font.Weight {
     switch self.weight {
     case 1:

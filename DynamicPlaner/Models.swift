@@ -21,7 +21,8 @@ class TextViewModel: BaseModel {
   }
   
   override func toString() -> String {
-    text
+    let prefix = weight < 5 ? String(repeating: "#", count: weight) : ""
+    return "\(prefix) \(text)"
   }
 }
 
@@ -47,6 +48,6 @@ class CheckBoxModel: BaseModel {
   }
   
   override func toString() -> String {
-    text
+    "-[\(done ? "x": " ")] \(text)"
   }
 }
