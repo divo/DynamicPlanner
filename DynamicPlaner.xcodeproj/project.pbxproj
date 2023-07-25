@@ -14,6 +14,8 @@
 		9360F9082A6540210065879B /* DynamicPlanerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F9072A6540210065879B /* DynamicPlanerTests.swift */; };
 		9360F9122A6540210065879B /* DynamicPlanerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F9112A6540210065879B /* DynamicPlanerUITests.swift */; };
 		9360F9142A6540210065879B /* DynamicPlanerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F9132A6540210065879B /* DynamicPlanerUITestsLaunchTests.swift */; };
+		937C57A32A70217100C9EB17 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937C57A22A70217100C9EB17 /* Models.swift */; };
+		937C57A52A70219300C9EB17 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937C57A42A70219300C9EB17 /* Views.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		9360F90D2A6540210065879B /* DynamicPlanerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicPlanerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9360F9112A6540210065879B /* DynamicPlanerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicPlanerUITests.swift; sourceTree = "<group>"; };
 		9360F9132A6540210065879B /* DynamicPlanerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicPlanerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		937C57A22A70217100C9EB17 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		937C57A42A70219300C9EB17 /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 			children = (
 				9360F8F62A6540200065879B /* DynamicPlanerApp.swift */,
 				9360F8F82A6540200065879B /* ContentView.swift */,
+				937C57A42A70219300C9EB17 /* Views.swift */,
+				937C57A22A70217100C9EB17 /* Models.swift */,
 				9360F8FA2A6540210065879B /* Assets.xcassets */,
 				9360F8FC2A6540210065879B /* Preview Content */,
 			);
@@ -257,6 +263,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				937C57A52A70219300C9EB17 /* Views.swift in Sources */,
+				937C57A32A70217100C9EB17 /* Models.swift in Sources */,
 				9360F8F92A6540200065879B /* ContentView.swift in Sources */,
 				9360F8F72A6540200065879B /* DynamicPlanerApp.swift in Sources */,
 			);
