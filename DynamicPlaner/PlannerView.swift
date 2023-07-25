@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  PlannerView.swift
 //  DynamicPlaner
 //
 //  Created by Steven Diviney on 17/07/2023.
@@ -11,7 +11,7 @@ class ViewModel: ObservableObject {
   @Published var models: [BaseModel] = []
 }
 
-struct ContentView : View {
+struct PlannerView : View {
   @State var stateString = "# This is some text\n\n# And some more text\n-[ ] Checkbox"
   @StateObject var vm = ViewModel()
   

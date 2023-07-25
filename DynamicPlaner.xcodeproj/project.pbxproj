@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		933571482A705EAC0015DF16 /* IndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933571472A705EAC0015DF16 /* IndexView.swift */; };
+		9335714B2A705EE70015DF16 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 9335714A2A705EE70015DF16 /* AlertToast */; };
+		9335714D2A705EFB0015DF16 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9335714C2A705EFB0015DF16 /* Style.swift */; };
+		9335714F2A705F130015DF16 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9335714E2A705F130015DF16 /* FileUtil.swift */; };
+		933571512A705F8B0015DF16 /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933571502A705F8A0015DF16 /* NotificationUtil.swift */; };
 		9360F8F72A6540200065879B /* DynamicPlanerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F8F62A6540200065879B /* DynamicPlanerApp.swift */; };
-		9360F8F92A6540200065879B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F8F82A6540200065879B /* ContentView.swift */; };
+		9360F8F92A6540200065879B /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F8F82A6540200065879B /* PlannerView.swift */; };
 		9360F8FB2A6540210065879B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9360F8FA2A6540210065879B /* Assets.xcassets */; };
 		9360F8FE2A6540210065879B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9360F8FD2A6540210065879B /* Preview Assets.xcassets */; };
 		9360F9082A6540210065879B /* DynamicPlanerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F9072A6540210065879B /* DynamicPlanerTests.swift */; };
@@ -36,9 +41,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		933571472A705EAC0015DF16 /* IndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexView.swift; sourceTree = "<group>"; };
+		9335714C2A705EFB0015DF16 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		9335714E2A705F130015DF16 /* FileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
+		933571502A705F8A0015DF16 /* NotificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
 		9360F8F32A6540200065879B /* DynamicPlaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicPlaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9360F8F62A6540200065879B /* DynamicPlanerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicPlanerApp.swift; sourceTree = "<group>"; };
-		9360F8F82A6540200065879B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9360F8F82A6540200065879B /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
 		9360F8FA2A6540210065879B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9360F8FD2A6540210065879B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9360F9032A6540210065879B /* DynamicPlanerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicPlanerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9335714B2A705EE70015DF16 /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,10 +108,14 @@
 		9360F8F52A6540200065879B /* DynamicPlaner */ = {
 			isa = PBXGroup;
 			children = (
+				933571502A705F8A0015DF16 /* NotificationUtil.swift */,
+				9335714C2A705EFB0015DF16 /* Style.swift */,
+				9335714E2A705F130015DF16 /* FileUtil.swift */,
 				9360F8F62A6540200065879B /* DynamicPlanerApp.swift */,
-				9360F8F82A6540200065879B /* ContentView.swift */,
+				9360F8F82A6540200065879B /* PlannerView.swift */,
 				937C57A42A70219300C9EB17 /* Views.swift */,
 				937C57A22A70217100C9EB17 /* Models.swift */,
+				933571472A705EAC0015DF16 /* IndexView.swift */,
 				9360F8FA2A6540210065879B /* Assets.xcassets */,
 				9360F8FC2A6540210065879B /* Preview Content */,
 			);
@@ -149,6 +163,9 @@
 			dependencies = (
 			);
 			name = DynamicPlaner;
+			packageProductDependencies = (
+				9335714A2A705EE70015DF16 /* AlertToast */,
+			);
 			productName = DynamicPlaner;
 			productReference = 9360F8F32A6540200065879B /* DynamicPlaner.app */;
 			productType = "com.apple.product-type.application";
@@ -221,6 +238,9 @@
 				Base,
 			);
 			mainGroup = 9360F8EA2A6540200065879B;
+			packageReferences = (
+				933571492A705EE70015DF16 /* XCRemoteSwiftPackageReference "AlertToast" */,
+			);
 			productRefGroup = 9360F8F42A6540200065879B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -264,8 +284,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				937C57A52A70219300C9EB17 /* Views.swift in Sources */,
+				9335714F2A705F130015DF16 /* FileUtil.swift in Sources */,
+				9335714D2A705EFB0015DF16 /* Style.swift in Sources */,
 				937C57A32A70217100C9EB17 /* Models.swift in Sources */,
-				9360F8F92A6540200065879B /* ContentView.swift in Sources */,
+				9360F8F92A6540200065879B /* PlannerView.swift in Sources */,
+				933571482A705EAC0015DF16 /* IndexView.swift in Sources */,
+				933571512A705F8B0015DF16 /* NotificationUtil.swift in Sources */,
 				9360F8F72A6540200065879B /* DynamicPlanerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,6 +615,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		933571492A705EE70015DF16 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9335714A2A705EE70015DF16 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 933571492A705EE70015DF16 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9360F8EB2A6540200065879B /* Project object */;
 }
