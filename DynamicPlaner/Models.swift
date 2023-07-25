@@ -15,7 +15,7 @@ class TextViewModel: BaseModel {
   @Published var text: String
   let weight: Int
   
-  init(text: String = "View Model", weight: Int = 1) {
+  init(text: String = "View Model", weight: Int = 5) {
     self.text = text
     self.weight = weight
   }

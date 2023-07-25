@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TextView: View {
   var text: String
-  var weight: Int = 1
+  var weight: Int = 5
   
   var body: some View {
     Text(text)

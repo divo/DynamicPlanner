@@ -12,7 +12,7 @@ class ViewModel: ObservableObject {
 }
 
 struct ContentView : View {
-  @State var stateString = "# This is some text\n \n# And some more text\n-[ ] Checkbox"
+  @State var stateString = "# This is some text\n\n# And some more text\n-[ ] Checkbox"
   @StateObject var vm = ViewModel()
   
   @ViewBuilder func render(vm: BaseModel) -> some View {
@@ -56,16 +56,19 @@ struct ContentView : View {
   
   func deserialize(state: String) -> [BaseModel] {
     var result: [BaseModel] = []
-    state.split(separator: "\n").map { string in
+    state.components(separatedBy: .newlines).map { string in
       let tokens = String(string).split(separator: " ") // Has to be better way than this nonsense
-      if string.first == "#" {
-        let text = String(string.drop(while: { c in c == "#" }).dropFirst())
-        result.append(TextViewModel(text: text, weight: tokens.first?.count ?? 1))
-      } else if(string.first == " ") {
+      if(string == "") {
         result.append(TextFieldModel())
       } else if(string.first == "-" && string.count > 4) {
         let text = String(string.dropFirst(5))
-        result.append(CheckBoxModel(text: text, done: false))
+        let done = Array(string)[2] == "x"
+        result.append(CheckBoxModel(text: text, done: done))
+      } else if string.first == "#" {
+        let text = String(string.drop(while: { c in c == "#" }).drop(while: { c in c == " " }))
+        result.append(TextViewModel(text: text, weight: tokens.first?.count ?? 1))
+      } else if string.first?.isASCII != nil && string.first!.isASCII {
+        result.append(TextViewModel(text: String(string)))
       }
     }
     
