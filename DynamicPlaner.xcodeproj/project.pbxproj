@@ -12,6 +12,9 @@
 		9335714D2A705EFB0015DF16 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9335714C2A705EFB0015DF16 /* Style.swift */; };
 		9335714F2A705F130015DF16 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9335714E2A705F130015DF16 /* FileUtil.swift */; };
 		933571512A705F8B0015DF16 /* NotificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933571502A705F8A0015DF16 /* NotificationUtil.swift */; };
+		933571552A7060190015DF16 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933571542A7060190015DF16 /* ConfigView.swift */; };
+		933571572A7060480015DF16 /* ViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933571562A7060480015DF16 /* ViewUtil.swift */; };
+		9335715D2A7060A40015DF16 /* CheckToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9335715C2A7060A40015DF16 /* CheckToggleStyle.swift */; };
 		9360F8F72A6540200065879B /* DynamicPlanerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F8F62A6540200065879B /* DynamicPlanerApp.swift */; };
 		9360F8F92A6540200065879B /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F8F82A6540200065879B /* PlannerView.swift */; };
 		9360F8FB2A6540210065879B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9360F8FA2A6540210065879B /* Assets.xcassets */; };
@@ -45,6 +48,9 @@
 		9335714C2A705EFB0015DF16 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		9335714E2A705F130015DF16 /* FileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
 		933571502A705F8A0015DF16 /* NotificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtil.swift; sourceTree = "<group>"; };
+		933571542A7060190015DF16 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
+		933571562A7060480015DF16 /* ViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtil.swift; sourceTree = "<group>"; };
+		9335715C2A7060A40015DF16 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
 		9360F8F32A6540200065879B /* DynamicPlaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicPlaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9360F8F62A6540200065879B /* DynamicPlanerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicPlanerApp.swift; sourceTree = "<group>"; };
 		9360F8F82A6540200065879B /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
@@ -108,6 +114,9 @@
 		9360F8F52A6540200065879B /* DynamicPlaner */ = {
 			isa = PBXGroup;
 			children = (
+				933571562A7060480015DF16 /* ViewUtil.swift */,
+				933571542A7060190015DF16 /* ConfigView.swift */,
+				9335715C2A7060A40015DF16 /* CheckToggleStyle.swift */,
 				933571502A705F8A0015DF16 /* NotificationUtil.swift */,
 				9335714C2A705EFB0015DF16 /* Style.swift */,
 				9335714E2A705F130015DF16 /* FileUtil.swift */,
@@ -287,7 +296,10 @@
 				9335714F2A705F130015DF16 /* FileUtil.swift in Sources */,
 				9335714D2A705EFB0015DF16 /* Style.swift in Sources */,
 				937C57A32A70217100C9EB17 /* Models.swift in Sources */,
+				933571572A7060480015DF16 /* ViewUtil.swift in Sources */,
 				9360F8F92A6540200065879B /* PlannerView.swift in Sources */,
+				933571552A7060190015DF16 /* ConfigView.swift in Sources */,
+				9335715D2A7060A40015DF16 /* CheckToggleStyle.swift in Sources */,
 				933571482A705EAC0015DF16 /* IndexView.swift in Sources */,
 				933571512A705F8B0015DF16 /* NotificationUtil.swift in Sources */,
 				9360F8F72A6540200065879B /* DynamicPlanerApp.swift in Sources */,
