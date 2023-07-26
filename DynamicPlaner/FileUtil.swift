@@ -40,29 +40,13 @@ struct FileUtil {
     return FileManager.default.fileExists(atPath: url.path)
   }
 
-//  static func readFile(_ url: URL) -> PlannerViewModel {
-//    return try! JSONDecoder().decode(PlannerViewModel.self, from: Data(contentsOf: url))
-//  }
-//  
-//  static func update(object: PlannerViewModel, with url: URL) {
-//    let storedObj = try! JSONDecoder().decode(PlannerViewModel.self, from: Data(contentsOf: url))
-//    object.update(other: storedObj)
-//  }
-//
-//  static func writeFile(_ url: URL, viewModel: PlannerViewModel) {
-//    let json = try! JSONEncoder().encode(viewModel)
-//    try! json.write(to: url)
-//  }
-//
-//  static func createFile(_ filename: String) {
-//    let url = self.getDocumentsDirectory().appendingPathComponent(filename)
-//    FileManager.default.createFile(atPath: url.path, contents: nil, attributes: nil)
-//    let emptyJson = try! JSONEncoder().encode(PlannerViewModel())
-//    try! emptyJson.write(to: url)
-//  }
-//
+  // TODO: Handle read/write failures
   static func readFile(_ url : URL) -> String {
     try! String(contentsOf: url, encoding: .utf8)
+  }
+  
+  static func writeFile(url: URL, viewModel: ViewModel) {
+    try! viewModel.encode().write(to: url, atomically: true, encoding: .utf8)
   }
   
   static func createFile(_ filename: String) {
