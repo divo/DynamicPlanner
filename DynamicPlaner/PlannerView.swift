@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct PlannerView : View {
-  @State var stateString: String
+  let file: URL?
+  var initialState: String = "" //TODO: Wire this up so I can live-preview the template
   @StateObject var vm: ViewModel = ViewModel()
   
   init(file: URL) {
-    self.stateString = FileUtil.readFile(file)
+    self.file = file
   }
   
   init(state: String) {
-    self.stateString = state
+    self.file = nil
+    self.initialState = state
   }
   
   @ViewBuilder func render(vm: BaseModel) -> some View {
@@ -38,6 +40,9 @@ struct PlannerView : View {
     VStack {
       Button("Serialize") {
         print(vm.encode())
+        if let file = self.file {
+          FileUtil.writeFile(url: file, viewModel: vm)
+        }
       }
       
       List {
@@ -47,7 +52,11 @@ struct PlannerView : View {
       }
       
     }.onAppear {
-      vm.update(state: stateString)
+      if let file = self.file {
+        if initialState == "" {
+          vm.update(state: FileUtil.readFile(file))
+        }
+    }
     }
   }
 }
