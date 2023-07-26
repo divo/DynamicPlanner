@@ -56,7 +56,7 @@ struct PlannerView : View {
         if initialState == "" {
           vm.update(state: FileUtil.readFile(file))
         }
-    }
+      }
     }
   }
 }

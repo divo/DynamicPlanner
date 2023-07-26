@@ -29,7 +29,7 @@ class ViewModel: ObservableObject {
   
   private func decode(state: String) -> [BaseModel] {
     var result: [BaseModel] = []
-    state.components(separatedBy: .newlines).map { string in
+    state.components(separatedBy: .newlines).forEach { string in
       let tokens = String(string).split(separator: " ") // Has to be better way than this nonsense
       if(string.first == "-") {
         let text = string.count > 4 ? String(string.dropFirst(5)) : ""
