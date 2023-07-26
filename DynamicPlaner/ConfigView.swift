@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ConfigView: View {
-  @State var planningTemplate = UserDefaults().string(forKey: "planningTemplate") ?? Constants.defaultTemplate
+  @State var planningTemplate = ""
   @State var dayStart = UserDefaults().object(forKey: "dayStart") as? Date ?? Date.now
   @State var planningTime = UserDefaults().object(forKey: "planningTime") as? Date ?? Date.now
   @State var startNotification = false
@@ -53,6 +53,8 @@ struct ConfigView: View {
         .onChange(of: planningTemplate) { newValue in
           UserDefaults().set(planningTemplate, forKey: Constants.templateKey)
         }
+    }.onAppear {
+      planningTemplate = UserDefaults().string(forKey: Constants.templateKey) ?? Constants.defaultTemplate
     }
   }
   
