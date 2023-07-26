@@ -15,6 +15,7 @@
 		933571552A7060190015DF16 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933571542A7060190015DF16 /* ConfigView.swift */; };
 		933571572A7060480015DF16 /* ViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933571562A7060480015DF16 /* ViewUtil.swift */; };
 		9335715D2A7060A40015DF16 /* CheckToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9335715C2A7060A40015DF16 /* CheckToggleStyle.swift */; };
+		9352E3BE2A713DCD00F02DB1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352E3BD2A713DCD00F02DB1 /* Constants.swift */; };
 		9360F8F72A6540200065879B /* DynamicPlanerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F8F62A6540200065879B /* DynamicPlanerApp.swift */; };
 		9360F8F92A6540200065879B /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F8F82A6540200065879B /* PlannerView.swift */; };
 		9360F8FB2A6540210065879B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9360F8FA2A6540210065879B /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		933571542A7060190015DF16 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
 		933571562A7060480015DF16 /* ViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtil.swift; sourceTree = "<group>"; };
 		9335715C2A7060A40015DF16 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
+		9352E3BD2A713DCD00F02DB1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9360F8F32A6540200065879B /* DynamicPlaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicPlaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9360F8F62A6540200065879B /* DynamicPlanerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicPlanerApp.swift; sourceTree = "<group>"; };
 		9360F8F82A6540200065879B /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				933571562A7060480015DF16 /* ViewUtil.swift */,
 				933571542A7060190015DF16 /* ConfigView.swift */,
+				9352E3BD2A713DCD00F02DB1 /* Constants.swift */,
 				9335715C2A7060A40015DF16 /* CheckToggleStyle.swift */,
 				933571502A705F8A0015DF16 /* NotificationUtil.swift */,
 				9335714C2A705EFB0015DF16 /* Style.swift */,
@@ -303,6 +306,7 @@
 				933571482A705EAC0015DF16 /* IndexView.swift in Sources */,
 				933571512A705F8B0015DF16 /* NotificationUtil.swift in Sources */,
 				9360F8F72A6540200065879B /* DynamicPlanerApp.swift in Sources */,
+				9352E3BE2A713DCD00F02DB1 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

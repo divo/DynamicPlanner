@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct DynamicPlanerApp: App {
-    var body: some Scene {
-        WindowGroup {
-            IndexView()
-        }
+  init() {
+   if UserDefaults().string(forKey: Constants.templateKey) == nil {
+      UserDefaults().set(Constants.defaultTemplate, forKey: Constants.templateKey)
     }
+  }
+  
+  var body: some Scene {
+   
+    WindowGroup {
+      IndexView()
+    }
+  }
 }

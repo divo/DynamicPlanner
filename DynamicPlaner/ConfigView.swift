@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ConfigView: View {
-  @State var habbitsText = UserDefaults().string(forKey: "habbits") ?? ""
+  @State var planningTemplate = UserDefaults().string(forKey: "planningTemplate") ?? Constants.defaultTemplate
   @State var dayStart = UserDefaults().object(forKey: "dayStart") as? Date ?? Date.now
   @State var planningTime = UserDefaults().object(forKey: "planningTime") as? Date ?? Date.now
   @State var startNotification = false
@@ -9,17 +9,6 @@ struct ConfigView: View {
   
   var body: some View {
     List {
-      VStack {
-        ViewUtil.textLabel("habbits").tint(.primary)
-        ViewUtil.smallLabel("comma seperated").tint(Style.primaryColor)
-        TextEditor(text: $habbitsText)
-          .frame(idealHeight: 20)
-          .overlay(ViewUtil.divider(), alignment: .bottom)
-      }.padding(10)
-        .onChange(of: habbitsText) { newValue in
-          UserDefaults().set(habbitsText, forKey: "habbits")
-        }
-      
       HStack {
         Toggle("", isOn: $startNotification)
           .toggleStyle(CheckToggleStyle(onSystemImage: "clock.badge", offSystemImage: "clock"))
@@ -56,6 +45,13 @@ struct ConfigView: View {
           }
         }.onChange(of: planningTime) { newValue in
           planningNotification = false
+        }
+      
+      VStack {
+        TextEditor(text: $planningTemplate)
+      }.padding(10)
+        .onChange(of: planningTemplate) { newValue in
+          UserDefaults().set(planningTemplate, forKey: Constants.templateKey)
         }
     }
   }
