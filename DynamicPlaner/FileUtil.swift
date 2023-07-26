@@ -61,6 +61,17 @@ struct FileUtil {
 //    try! emptyJson.write(to: url)
 //  }
 //
+  static func readFile(_ url : URL) -> String {
+    try! String(contentsOf: url, encoding: .utf8)
+  }
+  
+  static func createFile(_ filename: String) {
+    let url = self.getDocumentsDirectory().appendingPathComponent(filename)
+    FileManager.default.createFile(atPath: url.path, contents: nil, attributes: nil)
+    let emptyTemplate = ViewModel(state: UserDefaults().string(forKey: Constants.templateKey)!).encode()
+    try! emptyTemplate.write(to: url, atomically: true, encoding: .utf8)
+  }
+  
   static func deleteFile(_ filename: String) {
     let url = self.getDocumentsDirectory().appendingPathComponent(filename)
     try! FileManager.default.removeItem(at: url)

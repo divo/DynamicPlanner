@@ -29,8 +29,7 @@ struct IndexView: View {
         l.lastPathComponent > r.lastPathComponent
       })) { file in
         NavigationLink {
-//          PlannerView(file: file)
-          PlannerView()
+          PlannerView(file: file)
         } label: {
           Text(file.lastPathComponent)
         }
@@ -40,7 +39,7 @@ struct IndexView: View {
             Image(systemName: "doc.badge.plus")
               .foregroundColor(.accentColor)
               .onTapGesture {
-                pushEntry()
+                createEntry()
               }
               .onLongPressGesture(minimumDuration: 0.1) {
                 showingPopover = true
@@ -61,7 +60,7 @@ struct IndexView: View {
               }
               Button("Done") {
                 showingPopover = false
-                pushEntry(date: self.selectedDate)
+                createEntry(date: self.selectedDate)
               }
             }
           }.frame(width: 400, height: 200)
@@ -84,10 +83,10 @@ struct IndexView: View {
     }
   }
   
-  func pushEntry(date: Date = Date.now) {
+  func createEntry(date: Date = Date.now) {
     let filename = FileUtil.dateToFilename(date)
     if !FileUtil.checkFileExists(filename) {
-//      FileUtil.createFile(filename)
+      FileUtil.createFile(filename)
       files = FileUtil.listDocuments()
     }
   }
