@@ -16,6 +16,20 @@ class ViewModel: ObservableObject {
     }
   }
   
+  var focusIDs: [Int?] {
+    get {
+      var idx = 0
+      return models.map { element in
+        if element.type == .check || element.type == .field || element.type == .editor {
+          idx += 1 //Bit unintuaive but it's only the order that matters
+          return idx
+        } else {
+          return nil
+        }
+      }
+    }
+  }
+  
   var file: URL?
   
   init() {

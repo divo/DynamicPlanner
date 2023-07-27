@@ -11,6 +11,7 @@ struct PlannerView : View {
   let file: URL?
   var initialState: String = "" //TODO: Wire this up so I can live-preview the template
   @StateObject var vm: ViewModel = ViewModel()
+  @FocusState var focusedField: Int?
   
   init(file: URL) {
     self.file = file
@@ -21,24 +22,24 @@ struct PlannerView : View {
     self.initialState = state
   }
   
-  @ViewBuilder func render(vm: Binding<ElementModel>) -> some View {
+  @ViewBuilder func render(vm: Binding<ElementModel>, focusID: Int?) -> some View {
     switch vm.wrappedValue.type {
     case .text:
       TextView(text: vm.wrappedValue.text, weight: vm.wrappedValue.weight)
     case .field:
-      TextFieldView(text: vm.text)
+      TextFieldView(text: vm.text, focusedField: _focusedField, focusID: focusID!)
     case .check:
-      CheckBoxView(text: vm.text, done: vm.done)
+      CheckBoxView(text: vm.text, done: vm.done, focusedField: _focusedField, focusID: focusID!)
     case .editor:
-      EditorView(text: vm.text)
+      EditorView(text: vm.text, focusedField: _focusedField, focusID: focusID!)
     }
   }
   
   var body: some View {
     VStack {
       List {
-        ForEach(0..<$vm.models.count, id: \.self) { element in
-          render(vm: $vm.models[element])
+        ForEach(0..<$vm.models.count, id: \.self) { idx in
+          render(vm: $vm.models[idx], focusID: vm.focusIDs[idx])
         }
       }
       
