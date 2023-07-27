@@ -29,9 +29,9 @@ struct Constants {
   -[ ] Workout
   # todays grade
   
-  what will I do tomorrow?
+  ## what will I do tomorrow?
   
-  evening reflection
+  ## evening reflection
 
   """
 }

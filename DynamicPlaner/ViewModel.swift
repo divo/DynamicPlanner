@@ -40,8 +40,10 @@ class ViewModel: ObservableObject {
         result.append(BaseModel(type: .text, text: text, weight: tokens.first?.count ?? 1))
       } else if string == ""{
         result.append(BaseModel(type: .text))
+      } else if string == "" {
+        result.append(BaseModel(type: .field))
       } else if string.first?.isASCII != nil && string.first!.isASCII {
-        result.append(BaseModel(type: .text, text: String(string)))
+        result.append(BaseModel(type: .field, text: String(string)))
       }
     }
     return result
