@@ -21,16 +21,14 @@ struct PlannerView : View {
     self.initialState = state
   }
   
-  @ViewBuilder func render(vm: BaseModel) -> some View {
-    switch vm {
-    case let textVm as TextViewModel:
-      TextView(text: textVm.text, weight: textVm.weight)
-    case var fieldVm as TextFieldModel:
-      let bd = Binding<TextFieldModel>(get: { fieldVm }, set: { fieldVm = $0 })
-      TextFieldView(text: bd.text)
-    case var checkVm as CheckBoxModel:
-      let bd = Binding<CheckBoxModel>(get: { checkVm }, set: { checkVm = $0 })
-      CheckBoxView(text: bd.text, done: bd.done)
+  @ViewBuilder func render(vm: Binding<BaseModel>) -> some View {
+    switch vm.wrappedValue.type {
+    case .text:
+      TextView(text: vm.wrappedValue.text, weight: vm.wrappedValue.weight)
+    case .field:
+      TextFieldView(text: vm.text)
+    case .check:
+      CheckBoxView(text: vm.text, done: vm.done)
     default:
       Spacer()
     }
@@ -47,7 +45,7 @@ struct PlannerView : View {
       
       List {
         ForEach(0..<$vm.models.count, id: \.self) { element in
-          render(vm: vm.models[element])
+          render(vm: $vm.models[element])
         }
       }
       

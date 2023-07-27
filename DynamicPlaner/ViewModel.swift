@@ -34,14 +34,14 @@ class ViewModel: ObservableObject {
       if(string.first == "-") {
         let text = string.count > 4 ? String(string.dropFirst(5)) : ""
         let done = Array(string)[2] == "x"
-        result.append(CheckBoxModel(text: text, done: done))
+        result.append(BaseModel(type: .check, text: text, done: done))
       } else if string.first == "#" {
         let text = String(string.drop(while: { c in c == "#" }).drop(while: { c in c == " " }))
-        result.append(TextViewModel(text: text, weight: tokens.first?.count ?? 1))
+        result.append(BaseModel(type: .text, text: text, weight: tokens.first?.count ?? 1))
       } else if string == ""{
-        result.append(TextFieldModel())
+        result.append(BaseModel(type: .text))
       } else if string.first?.isASCII != nil && string.first!.isASCII {
-        result.append(TextFieldModel(text: String(string)))
+        result.append(BaseModel(type: .text, text: String(string)))
       }
     }
     return result

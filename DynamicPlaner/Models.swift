@@ -8,46 +8,34 @@
 import SwiftUI
 
 class BaseModel: ObservableObject {
-  func toString() -> String { "" }
-}
+  enum ViewType {
+    case text
+    case field
+    case check
+  }
+  
+  let type: ViewType
 
-class TextViewModel: BaseModel {
-  @Published var text: String
-  let weight: Int
-  
-  init(text: String = "View Model", weight: Int = 5) {
-    self.text = text
-    self.weight = weight
-  }
-  
-  override func toString() -> String {
-    let prefix = weight < 5 ? String(repeating: "#", count: weight) : ""
-    return "\(prefix) \(text)"
-  }
-}
-
-class TextFieldModel: BaseModel {
-  @Published var text: String
-  
-  init(text: String = "") {
-    self.text = text
-  }
-  
-  override func toString() -> String {
-    text
-  }
-}
-
-class CheckBoxModel: BaseModel {
   @Published var text: String
   @Published var done: Bool
-
-  init(text: String = "", done: Bool = false) {
+  let weight: Int
+  
+  init(type: ViewType, text: String = "", weight: Int = 5, done: Bool = false) {
+    self.type = type
     self.text = text
+    self.weight = weight
     self.done = done
   }
   
-  override func toString() -> String {
-    "-[\(done ? "x": " ")] \(text)"
+  func toString() -> String {
+    switch type {
+    case .text:
+      let prefix = weight < 5 ? String(repeating: "#", count: weight) : ""
+      return "\(prefix) \(text)"
+    case .field:
+      return text
+    case .check:
+      return "-[\(done ? "x": " ")] \(text)"
+    }
   }
 }

@@ -43,6 +43,7 @@ struct CheckBoxView: View  {
   var body: some View {
     HStack {
       Toggle("", isOn: $done)
+        .toggleStyle(CheckToggleStyle())
       TextField("", text: $text)
     }
   }
