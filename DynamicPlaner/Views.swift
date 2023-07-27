@@ -48,3 +48,12 @@ struct CheckBoxView: View  {
     }
   }
 }
+
+struct EditorView: View {
+  @Binding var text: String
+  
+  var body: some View {
+    TextEditor(text: $text)
+      .frame(height: 100)
+  }
+}

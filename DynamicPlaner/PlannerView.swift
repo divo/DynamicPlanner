@@ -29,6 +29,8 @@ struct PlannerView : View {
       TextFieldView(text: vm.text)
     case .check:
       CheckBoxView(text: vm.text, done: vm.done)
+    case .editor:
+      EditorView(text: vm.text)
     }
   }
   

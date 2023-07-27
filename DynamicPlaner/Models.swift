@@ -12,6 +12,7 @@ class ElementModel: ObservableObject {
     case text
     case field
     case check
+    case editor
   }
   
   let type: ViewType
@@ -36,6 +37,8 @@ class ElementModel: ObservableObject {
       return text
     case .check:
       return "-[\(done ? "x": " ")] \(text)"
+    case .editor:
+      return "\(text)\n"
     }
   }
 }

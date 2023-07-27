@@ -38,12 +38,29 @@ class ViewModel: ObservableObject {
   private func decode(state: String) -> [ElementModel] {
     var result: [ElementModel] = []
     let firstPass = firstPass(state: state)
+    result = secondPass(elements: firstPass)
     
     return result
   }
   
+  // Split on newlines, while keeping an element for succesive empty lines
+  private func splitLines(_ string: String) -> [String] {
+    var result: [String] = []
+    var acc: [Character] = []
+    for char in string {
+      if char == "\n" {
+        result.append(String(acc))
+        acc = []
+      } else {
+        acc.append(char)
+      }
+    }
+    result.append("")
+    return result
+  }
+  
   private func firstPass(state: String) -> [ElementModel] {
-    state.components(separatedBy: .newlines).map { (string) -> ElementModel in
+   return splitLines(state).map { (string) -> ElementModel in
       let tokens = String(string).split(separator: " ") // Has to be better way than this nonsense
       let model: ElementModel = {
         if(string.first == "-") {
@@ -61,5 +78,25 @@ class ViewModel: ObservableObject {
       }()
       return model
     }
+  }
+  
+  private func secondPass(elements: [ElementModel]) -> [ElementModel] {
+    var result: [ElementModel] = []
+    // Merge adjacent elements of specific types
+    elements.forEach { element in
+      if element.type == .field {
+        if result.last?.type == .field || result.last?.type == .editor {
+          let text = result.last!.text
+          result = result.dropLast()
+          result.append(ElementModel(type: .editor, text: text))
+        } else {
+          result.append(element)
+        }
+      } else {
+        result.append(element)
+      }
+    }
+    
+    return result
   }
 }
