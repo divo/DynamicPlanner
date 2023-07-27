@@ -39,11 +39,26 @@ struct TextFieldView: View {
 struct CheckBoxView: View  {
   @Binding var text: String
   @Binding var done: Bool
+  let model: Binding<CheckBoxModel>
+  
+  init(model: Binding<CheckBoxModel>) {
+    self.model = model
+    self._text = Binding<String>(get: { "" }, set: { $0 })
+    self._done = Binding<Bool>(get: { false }, set: { $0 })
+  }
   
   var body: some View {
     HStack {
-      Toggle("", isOn: $done)
-      TextField("", text: $text)
+      Toggle("", isOn: model.done)
+        .onChange(of: model.done.wrappedValue) { newValue in
+          print("Simple view \(done)")
+        }
+      Toggle("", isOn: model.done)
+        .toggleStyle(CheckToggleStyle())
+        .onChange(of: model.done.wrappedValue) { newValue in
+          print("View \(newValue)")
+        }
+      TextField("", text: model.text)
     }
   }
 }
