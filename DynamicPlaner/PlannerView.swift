@@ -29,20 +29,11 @@ struct PlannerView : View {
       TextFieldView(text: vm.text)
     case .check:
       CheckBoxView(text: vm.text, done: vm.done)
-    default:
-      Spacer()
     }
   }
   
   var body: some View {
     VStack {
-      Button("Serialize") {
-        print(vm.encode())
-        if let file = self.file {
-          FileUtil.writeFile(url: file, viewModel: vm)
-        }
-      }
-      
       List {
         ForEach(0..<$vm.models.count, id: \.self) { element in
           render(vm: $vm.models[element])
@@ -52,6 +43,7 @@ struct PlannerView : View {
     }.onAppear {
       if let file = self.file {
         if initialState == "" {
+          vm.file = file
           vm.update(state: FileUtil.readFile(file))
         }
       }

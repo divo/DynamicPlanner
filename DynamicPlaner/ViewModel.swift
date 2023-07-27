@@ -8,7 +8,15 @@
 import Foundation
 
 class ViewModel: ObservableObject {
-  @Published var models: [BaseModel]
+  @Published var models: [BaseModel] {
+    didSet {
+      if let file = file {
+        FileUtil.writeFile(url: file, viewModel: self)
+      }
+    }
+  }
+  
+  var file: URL?
   
   init() {
     self.models = []
@@ -38,8 +46,6 @@ class ViewModel: ObservableObject {
       } else if string.first == "#" {
         let text = String(string.drop(while: { c in c == "#" }).drop(while: { c in c == " " }))
         result.append(BaseModel(type: .text, text: text, weight: tokens.first?.count ?? 1))
-      } else if string == ""{
-        result.append(BaseModel(type: .text))
       } else if string == "" {
         result.append(BaseModel(type: .field))
       } else if string.first?.isASCII != nil && string.first!.isASCII {
