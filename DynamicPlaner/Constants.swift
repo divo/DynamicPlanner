@@ -13,6 +13,7 @@ struct Constants {
   """
   # before
   
+  
   ## 1 hour of self improvement on
   
   ## todo
@@ -31,7 +32,9 @@ struct Constants {
   
   ## what will I do tomorrow?
   
+  
   ## evening reflection
 
+  
   """
 }
