@@ -21,7 +21,7 @@ struct PlannerView : View {
     self.initialState = state
   }
   
-  @ViewBuilder func render(vm: Binding<BaseModel>) -> some View {
+  @ViewBuilder func render(vm: Binding<ElementModel>) -> some View {
     switch vm.wrappedValue.type {
     case .text:
       TextView(text: vm.wrappedValue.text, weight: vm.wrappedValue.weight)

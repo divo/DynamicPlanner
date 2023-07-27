@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class BaseModel: ObservableObject {
+class ElementModel: ObservableObject {
   enum ViewType {
     case text
     case field
