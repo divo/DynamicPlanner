@@ -23,10 +23,10 @@ struct DateUtil {
     return add(baseDate: baseDate, to: result)
   }
 
-  static func add(baseDate: Date, to: Date) -> Date? {
-    let calendar = Calendar.current
-    let components = calendar.dateComponents([.day, .month, .year], from: to, to: baseDate)
-    return calendar.date(byAdding: components, to: to)
+  static func add(baseDate: Date, to: Date) -> Date {
+    let hour = Calendar.current.dateComponents([.hour, .minute], from: to)
+    var result = Calendar.current.date(byAdding: .hour, value: hour.hour ?? 0, to: baseDate)
+    return Calendar.current.date(byAdding: .minute, value: hour.minute ?? 0, to: result!)! // TODO: Make less awful
   }
   
   static func today() -> String {
