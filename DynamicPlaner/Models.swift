@@ -14,6 +14,7 @@ class ElementModel: ObservableObject {
     case check
     case editor
     case notification
+    case empty // Handle parsing failures
   }
   
   let type: ViewType
@@ -69,6 +70,8 @@ class ElementModel: ObservableObject {
       return "\(text)\n"
     case .notification:
       return "[\(label)](\(DateUtil.dateToString(date))) \(text)"
+    case .empty:
+      return text
     }
   }
   

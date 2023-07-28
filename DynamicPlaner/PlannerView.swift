@@ -34,6 +34,8 @@ struct PlannerView : View {
       EditorView(text: vm.text, focusedField: _focusedField, focusID: focusID!)
     case .notification:
       NotificationView(label: vm.label.wrappedValue, text: vm.text, notification: vm.done, focusID: focusID!)
+    case .empty:
+      Spacer().foregroundColor(.red)
     }
   }
   

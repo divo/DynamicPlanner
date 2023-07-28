@@ -93,6 +93,8 @@ class ViewModel: ObservableObject {
       let tokens = String(string).split(separator: " ") // Has to be better way than this nonsense
       let model: ElementModel = {
         if(string.first == "-") {
+          guard string.count > 5 else { return ElementModel(type: .empty, text: String(string)) }
+          
           let text = string.count > 4 ? String(string.dropFirst(5)) : ""
           let done = Array(string)[2] == "x"
           return ElementModel(type: .check, text: text, done: done)
