@@ -13,6 +13,7 @@ class ElementModel: ObservableObject {
     case field
     case check
     case editor
+    case notification
   }
   
   let type: ViewType
@@ -20,12 +21,16 @@ class ElementModel: ObservableObject {
   @Published var text: String
   @Published var done: Bool
   let weight: Int
+  var label: String
+  let date: Date
   
-  init(type: ViewType, text: String = "", weight: Int = 5, done: Bool = false) {
+  init(type: ViewType, text: String = "", weight: Int = 5, done: Bool = false, label: String = "", date: Date = Date.now) {
     self.type = type
     self.text = text
     self.weight = weight
     self.done = done
+    self.label = label
+    self.date = date
   }
   
   func toString() -> String {
@@ -39,6 +44,8 @@ class ElementModel: ObservableObject {
       return "-[\(done ? "x": " ")] \(text)"
     case .editor:
       return "\(text)\n"
+    case .notification:
+      return "[\(label)](\(DateUtil.dateToString(date))) \(text)"
     }
   }
 }

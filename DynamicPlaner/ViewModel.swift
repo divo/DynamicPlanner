@@ -20,7 +20,7 @@ class ViewModel: ObservableObject {
     get {
       var idx = 0
       return models.map { element in
-        if element.type == .check || element.type == .field || element.type == .editor {
+        if element.type == .check || element.type == .field || element.type == .editor || element.type == .notification {
           idx += 1 //Bit unintuaive but it's only the order that matters
           return idx
         } else {
@@ -84,6 +84,21 @@ class ViewModel: ObservableObject {
         } else if string.first == "#" {
           let text = String(string.drop(while: { c in c == "#" }).drop(while: { c in c == " " }))
           return ElementModel(type: .text, text: text, weight: tokens.first?.count ?? 1)
+        } else if string.first == "[" {
+          // I'm sure this will never blow up
+          let labelTime = string.dropFirst().split(separator: "]")
+          let label = String(labelTime.first ?? "")
+          let time = String((labelTime[1].split(separator: "(").first?.split(separator: ")"))?.first ?? "")
+          var remaining = labelTime[1].split(separator: " ")
+          var text = ""
+          if remaining.count > 1 {
+            text = String(remaining.last ?? "")
+          }
+          if let baseDate = self.date,
+             let date = DateUtil.timeToDate(baseDate: baseDate, time: time) {
+            return ElementModel(type: .notification, text: text, label: label, date: date)
+          }
+          return ElementModel(type: .text) // TODO: Handle no date
         } else if string == "" {
           return ElementModel(type: .field)
         } else { //if string.first?.isASCII != nil && string.first!.isASCII {

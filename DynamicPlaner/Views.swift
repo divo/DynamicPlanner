@@ -66,6 +66,27 @@ struct CheckBoxView: View  {
   }
 }
 
+struct NotificationView: View {
+  var label: String
+  @Binding var text: String
+  @Binding var notification: Bool
+  @FocusState var focusedField: Int?
+  var focusID: Int
+  
+  var body: some View {
+    HStack {
+      Toggle("", isOn: $notification)
+        .toggleStyle(CheckToggleStyle(onSystemImage: "clock.badge.fill", offSystemImage: "clock"))
+      Text(label)
+      TextField("", text: $text)
+        .focused($focusedField, equals: focusID)
+        .onSubmit {
+          focusedField = focusID + 1
+        }
+    }
+  }
+}
+
 struct EditorView: View {
   @Binding var text: String
   @FocusState var focusedField: Int?

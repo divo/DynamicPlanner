@@ -26,6 +26,7 @@
 		9360F9142A6540210065879B /* DynamicPlanerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F9132A6540210065879B /* DynamicPlanerUITestsLaunchTests.swift */; };
 		937C57A32A70217100C9EB17 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937C57A22A70217100C9EB17 /* Models.swift */; };
 		937C57A52A70219300C9EB17 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937C57A42A70219300C9EB17 /* Views.swift */; };
+		93D314A22A739ED5005CA042 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D314A12A739ED5005CA042 /* DateUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		9360F9132A6540210065879B /* DynamicPlanerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicPlanerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		937C57A22A70217100C9EB17 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		937C57A42A70219300C9EB17 /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
+		93D314A12A739ED5005CA042 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				9360F8F62A6540200065879B /* DynamicPlanerApp.swift */,
 				9360F8F82A6540200065879B /* PlannerView.swift */,
 				9352E3BF2A71479D00F02DB1 /* ViewModel.swift */,
+				93D314A12A739ED5005CA042 /* DateUtil.swift */,
 				937C57A42A70219300C9EB17 /* Views.swift */,
 				937C57A22A70217100C9EB17 /* Models.swift */,
 				933571472A705EAC0015DF16 /* IndexView.swift */,
@@ -311,6 +314,7 @@
 				933571512A705F8B0015DF16 /* NotificationUtil.swift in Sources */,
 				9360F8F72A6540200065879B /* DynamicPlanerApp.swift in Sources */,
 				9352E3BE2A713DCD00F02DB1 /* Constants.swift in Sources */,
+				93D314A22A739ED5005CA042 /* DateUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
