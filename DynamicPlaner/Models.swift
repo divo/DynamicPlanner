@@ -18,8 +18,31 @@ class ElementModel: ObservableObject {
   
   let type: ViewType
 
-  @Published var text: String
-  @Published var done: Bool
+  @Published var text: String {
+    didSet {
+      if self.type == .notification {
+        if self.text != "" && done {
+         let set = setReminder()
+          if !set { self.done = false } // Unable to set reminder. This guard shouldn't be needed?
+        } else {
+          self.done = false
+          removeReminder()
+        }
+      }
+    }
+  }
+  @Published var done: Bool {
+    didSet {
+      if self.type == .notification {
+        if self.done {
+          let set = setReminder()
+          if !set { self.done = false } // Unable to set reminder. This guard shouldn't be needed?
+        } else {
+          removeReminder()
+        }
+      }
+    }
+  }
   let weight: Int
   var label: String
   let date: Date
@@ -47,5 +70,13 @@ class ElementModel: ObservableObject {
     case .notification:
       return "[\(label)](\(DateUtil.dateToString(date))) \(text)"
     }
+  }
+  
+  func setReminder() -> Bool {
+    let noteText = (self.text != "" ? self.text : self.label)
+    return NotificationUtil.scheduleNotification(id: DateUtil.dateToNotificationID(date), message: noteText, date: date)
+  }
+  func removeReminder() {
+    NotificationUtil.removeNotification(id: DateUtil.dateToNotificationID(date))
   }
 }

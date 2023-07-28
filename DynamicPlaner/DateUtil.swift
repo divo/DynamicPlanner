@@ -46,4 +46,11 @@ struct DateUtil {
     dateFormatter.dateFormat = "HH:mm"
     return dateFormatter.string(from: date)
   }
+  
+  // I don't want to figure out some way to generate IDs, this will do
+  static func dateToNotificationID(_ date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+    return dateFormatter.string(from: date)
+  }
 }

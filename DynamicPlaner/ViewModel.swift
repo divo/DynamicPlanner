@@ -104,7 +104,7 @@ class ViewModel: ObservableObject {
           let labelTime = string.dropFirst().split(separator: "]")
           let label = String(labelTime.first ?? "")
           let time = String((labelTime[1].split(separator: "(").first?.split(separator: ")"))?.first ?? "")
-          var remaining = labelTime[1].split(separator: " ")
+          let remaining = labelTime[1].split(separator: " ")
           var text = ""
           if remaining.count > 1 {
             text = String(remaining.last ?? "")
