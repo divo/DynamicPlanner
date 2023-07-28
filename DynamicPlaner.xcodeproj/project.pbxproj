@@ -56,7 +56,7 @@
 		9335715C2A7060A40015DF16 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
 		9352E3BD2A713DCD00F02DB1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9352E3BF2A71479D00F02DB1 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		9360F8F32A6540200065879B /* DynamicPlaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicPlaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9360F8F32A6540200065879B /* Daily Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9360F8F62A6540200065879B /* DynamicPlanerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicPlanerApp.swift; sourceTree = "<group>"; };
 		9360F8F82A6540200065879B /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
 		9360F8FA2A6540210065879B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -69,6 +69,8 @@
 		937C57A22A70217100C9EB17 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		937C57A42A70219300C9EB17 /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		93D314A12A739ED5005CA042 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		93D314A52A73FDF2005CA042 /* DynamicPlaner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DynamicPlaner.entitlements; sourceTree = "<group>"; };
+		93D314A62A73FF16005CA042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +112,7 @@
 		9360F8F42A6540200065879B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9360F8F32A6540200065879B /* DynamicPlaner.app */,
+				9360F8F32A6540200065879B /* Daily Planner.app */,
 				9360F9032A6540210065879B /* DynamicPlanerTests.xctest */,
 				9360F90D2A6540210065879B /* DynamicPlanerUITests.xctest */,
 			);
@@ -120,6 +122,8 @@
 		9360F8F52A6540200065879B /* DynamicPlaner */ = {
 			isa = PBXGroup;
 			children = (
+				93D314A62A73FF16005CA042 /* Info.plist */,
+				93D314A52A73FDF2005CA042 /* DynamicPlaner.entitlements */,
 				933571562A7060480015DF16 /* ViewUtil.swift */,
 				933571542A7060190015DF16 /* ConfigView.swift */,
 				9352E3BD2A713DCD00F02DB1 /* Constants.swift */,
@@ -185,7 +189,7 @@
 				9335714A2A705EE70015DF16 /* AlertToast */,
 			);
 			productName = DynamicPlaner;
-			productReference = 9360F8F32A6540200065879B /* DynamicPlaner.app */;
+			productReference = 9360F8F32A6540200065879B /* Daily Planner.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9360F9022A6540210065879B /* DynamicPlanerTests */ = {
@@ -470,12 +474,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DynamicPlaner/DynamicPlaner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DynamicPlaner/Preview Content\"";
 				DEVELOPMENT_TEAM = 9F7FZ3S533;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DynamicPlaner/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -487,7 +493,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.halfspud.DynamicPlaner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Daily Planner";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -499,12 +505,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DynamicPlaner/DynamicPlaner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DynamicPlaner/Preview Content\"";
 				DEVELOPMENT_TEAM = 9F7FZ3S533;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DynamicPlaner/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -516,7 +524,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.halfspud.DynamicPlaner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Daily Planner";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
