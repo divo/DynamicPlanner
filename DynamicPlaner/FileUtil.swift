@@ -52,7 +52,7 @@ struct FileUtil {
   static func createFile(_ filename: String) {
     let url = self.getDocumentsDirectory().appendingPathComponent(filename)
     FileManager.default.createFile(atPath: url.path, contents: nil, attributes: nil)
-    let emptyTemplate = ViewModel(state: UserDefaults().string(forKey: Constants.templateKey)!).encode()
+    let emptyTemplate = ViewModel(state: UserDefaults().string(forKey: Constants.templateKey)!, file: url).encode()
     try! emptyTemplate.write(to: url, atomically: true, encoding: .utf8)
   }
   

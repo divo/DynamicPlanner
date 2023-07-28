@@ -30,14 +30,23 @@ class ViewModel: ObservableObject {
     }
   }
   
-  var file: URL?
+  var file: URL? {
+    didSet {
+      setDate()
+    }
+  }
+  var date: Date?
   
+  // Used by PlannerView to create an inital state. I don't want to read the file
+  // right away so need a way to init to a useless state. This init leaves the VM invalid.....
   init() {
     self.models = []
   }
   
-  init(state: String) {
+  init(state: String, file: URL) {
     self.models = []
+    self.file = file
+    self.setDate()
     self.models = decode(state: state)
   }
   
@@ -47,6 +56,12 @@ class ViewModel: ObservableObject {
   
   func update(state: String) {
     self.models = decode(state: state)
+  }
+  
+  private func setDate() {
+    if let file = self.file {
+      self.date = DateUtil.filenameToDate(file.lastPathComponent)
+    }
   }
   
   private func decode(state: String) -> [ElementModel] {
