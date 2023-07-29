@@ -98,3 +98,11 @@ struct EditorView: View {
       .focused($focusedField, equals: focusID)
   }
 }
+
+struct EmptyView: View {
+  var text: String
+  var body: some View {
+    Text("Invalid element: \"\(text)\"")
+      .foregroundColor(Style.errorColor)
+  }
+}

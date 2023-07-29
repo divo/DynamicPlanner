@@ -35,7 +35,7 @@ struct PlannerView : View {
     case .notification:
       NotificationView(label: vm.label.wrappedValue, text: vm.text, notification: vm.done, focusID: focusID!)
     case .empty:
-      Spacer().foregroundColor(.red)
+      EmptyView(text: vm.text.wrappedValue)
     }
   }
   
