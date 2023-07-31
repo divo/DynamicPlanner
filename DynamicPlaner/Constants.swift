@@ -17,9 +17,9 @@ struct Constants {
   ## 1 hour of self improvement on
   
   ## todo
-  -[ ]
-  -[ ]
-  -[ ]
+  - [ ]
+  - [ ]
+  - [ ]
   ## schedule
   [7](07:00)
   [8](08:00)
@@ -39,10 +39,10 @@ struct Constants {
   [22](22:00)
   # after
   # habbits
-  -[ ] Anki
-  -[ ] Reading
-  -[ ] Coding
-  -[ ] Workout
+  - [ ] Anki
+  - [ ] Reading
+  - [ ] Coding
+  - [ ] Workout
   # todays grade
   
   ## what will I do tomorrow?

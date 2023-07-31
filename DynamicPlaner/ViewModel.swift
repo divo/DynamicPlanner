@@ -93,10 +93,10 @@ class ViewModel: ObservableObject {
       let tokens = String(string).split(separator: " ") // Has to be better way than this nonsense
       let model: ElementModel = {
         if(string.first == "-") {
-          guard string.count > 3 else { return ElementModel(type: .empty, text: String(string)) }
+          guard string.count > 4 else { return ElementModel(type: .empty, text: String(string)) }
           
-          let text = string.count > 4 ? String(string.dropFirst(5)) : ""
-          let done = Array(string)[2] == "x"
+          let text = string.count > 5 ? String(string.dropFirst(6)) : ""
+          let done = Array(string)[3] == "x"
           return ElementModel(type: .check, text: text, done: done)
         } else if string.first == "#" {
           let text = String(string.drop(while: { c in c == "#" }).drop(while: { c in c == " " }))
