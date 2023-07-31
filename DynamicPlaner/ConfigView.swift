@@ -55,6 +55,11 @@ struct ConfigView: View {
         }
     }.onAppear {
       planningTemplate = UserDefaults().string(forKey: Constants.templateKey) ?? Constants.defaultTemplate
+      
+      DispatchQueue.main.async {
+        NotificationUtil.checkScheduled(id: "planningTime") { res in self.planningNotification = res }
+        NotificationUtil.checkScheduled(id: "dayStart") { res in self.startNotification = res }
+      }
     }
   }
   
