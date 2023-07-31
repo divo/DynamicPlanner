@@ -13,6 +13,11 @@ struct FileUtil {
   static func setDriveURL() {
     DispatchQueue.global().async {
       baseURL = driveURL()
+      var isdirectory : ObjCBool = true
+      let exists = FileManager.default.fileExists(atPath: baseURL.absoluteString, isDirectory: &isdirectory)
+      if !isdirectory.boolValue || !exists {
+        try? FileManager.default.createDirectory(at: baseURL, withIntermediateDirectories: true)
+      }
     }
   }
   
@@ -29,6 +34,7 @@ struct FileUtil {
   }
  
   static func listDocuments() -> [URL] {
+    // Let it crash and hope I get a report.
     try! FileManager.default.contentsOfDirectory(at: self.getDocumentsDirectory(), includingPropertiesForKeys: nil)
       .filter({ url in
         url.lastPathComponent.first != "."
