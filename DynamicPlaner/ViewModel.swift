@@ -95,7 +95,7 @@ class ViewModel: ObservableObject {
         if(string.first == "-") {
           guard string.count > 4 else { return ElementModel(type: .empty, text: String(string)) }
           
-          let text = string.count > 5 ? String(string.dropFirst(6)) : ""
+          let text = string.count > 5 ? String(string.dropFirst(5)) : ""
           let done = Array(string)[3] == "x"
           return ElementModel(type: .check, text: text, done: done)
         } else if string.first == "#" {
