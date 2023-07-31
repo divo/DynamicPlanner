@@ -55,6 +55,16 @@ class ElementModel: ObservableObject {
     self.done = done
     self.label = label
     self.date = date
+    
+    checkNotificationScheduled()
+  }
+  
+  func checkNotificationScheduled() {
+    if type == .notification {
+      NotificationUtil.checkScheduled(id: DateUtil.dateToNotificationID(date)) { res in
+        self.done = res
+      }
+    }
   }
   
   func toString() -> String {

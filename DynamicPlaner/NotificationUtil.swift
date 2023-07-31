@@ -18,6 +18,16 @@ struct NotificationUtil {
     }
   }
   
+  static func checkScheduled(id: String, completion: @escaping (Bool) -> ()) {
+    UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+      completion({
+       requests.contains { request in
+          request.identifier == id
+        }
+      }())
+    }
+  }
+  
   static func scheduleRepeatingNotification(id: String, message: String, date: Date) -> Bool {
     removeNotification(id: id)
     
