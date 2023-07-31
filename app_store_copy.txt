@@ -1,0 +1,21 @@
+Markdown Planner: A Customizable Daily Planner
+
+A simple daily planner app driven by Markdown, you can create your personalized daily planner.
+
+Create Your Layout:
+Design your perfect planner layout using Markdown syntax. Whether you want it simple or detailed.
+
+Schedule time to plan:
+Bring clarity and focus to your day by setting time aside to plan it.
+
+Long-Form Text and Checklists:
+Write down your thoughts, reflections, and tasks. Add headings, long form text, single fields and checklist for todos and habits.
+
+Set Reminders:
+Stay on top of your schedule by setting reminders for important events and deadlines.
+
+Sync Across Devices:
+Access your planner from all your iOS devices using iCloud and stay organized wherever you go.
+
+Own your data:
+All files are stored in markdown in your iCloud drive or on your device. No monthly subscriptions, no in app purchases and no proprietary formats, ever.
