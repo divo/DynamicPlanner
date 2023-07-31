@@ -4,6 +4,7 @@
 - [x] Markdown checkbox is incorrect, should have a space after the "-"
 - [x] Reminder state not persisted
 - [x] Config reminder state not persisted
+- [ ] Schedule model not serializing properly
 
 ## Features
 - [ ] Add a new element to group
