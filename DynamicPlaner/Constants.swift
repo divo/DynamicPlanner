@@ -39,9 +39,7 @@ struct Constants {
   [22](22:00)
   # after
   # habbits
-  - [ ] Anki
   - [ ] Reading
-  - [ ] Coding
   - [ ] Workout
   # todays grade
   
