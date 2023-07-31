@@ -17,7 +17,6 @@ struct DynamicPlanerApp: App {
   }
   
   var body: some Scene {
-   
     WindowGroup {
       IndexView()
     }
