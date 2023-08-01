@@ -78,6 +78,7 @@ struct IndexView: View {
         return
       }
       
+      files = FileUtil.listDocuments()
     }.toast(isPresenting: $showToast){
       AlertToast(displayMode: .alert, type: .error(.orange), title: "iCloud not found, storing files localy")
     }
