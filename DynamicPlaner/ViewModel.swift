@@ -100,7 +100,7 @@ class ViewModel: ObservableObject {
           return ElementModel(type: .check, text: text, done: done)
         } else if string.first == "#" {
           let text = String(string.drop(while: { c in c == "#" }).drop(while: { c in c == " " }))
-          return ElementModel(type: .text, text: text, weight: tokens.first?.count ?? 1)
+          return ElementModel(type: .heading, text: text, weight: tokens.first?.count ?? 1)
         } else if string.first == "[" {
           // I'm sure this will never blow up
           let labelTime = string.dropFirst().split(separator: "]")
@@ -115,7 +115,7 @@ class ViewModel: ObservableObject {
              let date = DateUtil.timeToDate(baseDate: baseDate, time: time) {
             return ElementModel(type: .notification, text: text, label: label, date: date)
           }
-          return ElementModel(type: .text) // TODO: Handle no date
+          return ElementModel(type: .heading) // TODO: Handle no date
         } else if string == "" {
           return ElementModel(type: .field)
         } else { //if string.first?.isASCII != nil && string.first!.isASCII {

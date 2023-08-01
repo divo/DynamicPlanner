@@ -24,7 +24,7 @@ struct PlannerView : View {
   
   @ViewBuilder func render(vm: Binding<ElementModel>, focusID: Int?) -> some View {
     switch vm.wrappedValue.type {
-    case .text:
+    case .heading:
       TextView(text: vm.wrappedValue.text, weight: vm.wrappedValue.weight)
     case .field:
       TextFieldView(text: vm.text, focusedField: _focusedField, focusID: focusID!)

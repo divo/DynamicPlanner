@@ -9,7 +9,7 @@ import SwiftUI
 
 class ElementModel: ObservableObject {
   enum ViewType {
-    case text
+    case heading
     case field
     case check
     case editor
@@ -69,7 +69,7 @@ class ElementModel: ObservableObject {
   
   func toString() -> String {
     switch type {
-    case .text:
+    case .heading:
       let prefix = weight < 5 ? String(repeating: "#", count: weight) : ""
       return "\(prefix) \(text)"
     case .field:
