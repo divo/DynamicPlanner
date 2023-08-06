@@ -4,10 +4,10 @@
 - [x] Markdown checkbox is incorrect, should have a space after the "-"
 - [x] Reminder state not persisted
 - [x] Config reminder state not persisted
-- [ ] Schedule model not serializing properly
+- [x] Schedule model not serializing properly
 
 ## Features
-- [ ] Add a new element to group
+- [x] Add a new element to group
 - [ ] Textfield default text. Capture with "" or _xyz_?
 - [ ] Better iCloud Sync
 - [ ] Mutliselect fields
