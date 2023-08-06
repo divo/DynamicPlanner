@@ -99,6 +99,18 @@ struct EditorView: View {
   }
 }
 
+struct AddCheckView: View {
+  var addElementCallback: () -> ()
+   
+  var body: some View {
+    Button(action: {
+      addElementCallback()
+    }, label: {
+      Image(systemName: "plus.circle")
+    })
+  }
+}
+
 struct EmptyView: View {
   var text: String
   var body: some View {

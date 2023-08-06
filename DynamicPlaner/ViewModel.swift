@@ -58,6 +58,12 @@ class ViewModel: ObservableObject {
     self.models = decode(state: state)
   }
   
+  func addCheck(before: ElementModel) {
+    let idx = self.models.firstIndex { model in model.elementID == before.elementID }
+    guard let idx = idx else { return }
+    models.insert(ElementModel(type: .check, text: "", done: false), at: idx)
+  }
+  
   private func setDate() {
     if let file = self.file {
       self.date = DateUtil.filenameToDate(file.lastPathComponent)
@@ -116,6 +122,8 @@ class ViewModel: ObservableObject {
             return ElementModel(type: .notification, text: text, label: label, date: date)
           }
           return ElementModel(type: .heading) // TODO: Handle no date
+        } else if (string.first == "+") { // TODO: Should this be a link or ?
+          return ElementModel(type: .addCheck)
         } else if string == "" {
           return ElementModel(type: .field)
         } else { //if string.first?.isASCII != nil && string.first!.isASCII {

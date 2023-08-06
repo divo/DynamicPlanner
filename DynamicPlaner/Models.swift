@@ -14,10 +14,12 @@ class ElementModel: ObservableObject {
     case check
     case editor
     case notification
+    case addCheck // Could expand this to be generic in future, for now only adding checkboxes seems to make sense.
     case empty // Handle parsing failures
   }
   
   let type: ViewType
+  let elementID: String = UUID().uuidString // Just for finding elements, not for SwiftUI
 
   @Published var text: String {
     didSet {
@@ -80,6 +82,8 @@ class ElementModel: ObservableObject {
       return "\(text)\n"
     case .notification:
       return "[\(label)](\(DateUtil.dateToString(date))) \(text)"
+    case .addCheck:
+      return "+"
     case .empty:
       return text
     }

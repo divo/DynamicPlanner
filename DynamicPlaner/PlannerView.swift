@@ -22,7 +22,7 @@ struct PlannerView : View {
     self.initialState = state
   }
   
-  @ViewBuilder func render(vm: Binding<ElementModel>, focusID: Int?) -> some View {
+  @ViewBuilder func render(vm: Binding<ElementModel>, focusID: Int?, index: Int) -> some View {
     switch vm.wrappedValue.type {
     case .heading:
       TextView(text: vm.wrappedValue.text, weight: vm.wrappedValue.weight)
@@ -34,6 +34,10 @@ struct PlannerView : View {
       EditorView(text: vm.text, focusedField: _focusedField, focusID: focusID!)
     case .notification:
       NotificationView(label: vm.label.wrappedValue, text: vm.text, notification: vm.done, focusID: focusID!)
+    case .addCheck:
+      AddCheckView(addElementCallback: {
+        self.vm.addCheck(before: vm.wrappedValue)
+      })
     case .empty:
       EmptyView(text: vm.text.wrappedValue)
     }
@@ -43,7 +47,7 @@ struct PlannerView : View {
     VStack {
       List {
         ForEach(0..<$vm.models.count, id: \.self) { idx in
-          render(vm: $vm.models[idx], focusID: vm.focusIDs[idx])
+          render(vm: $vm.models[idx], focusID: vm.focusIDs[idx], index: idx)
         }
       }
       
