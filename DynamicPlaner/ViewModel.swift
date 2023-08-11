@@ -137,12 +137,14 @@ class ViewModel: ObservableObject {
   private func secondPass(elements: [ElementModel]) -> [ElementModel] {
     var result: [ElementModel] = []
     // Merge adjacent elements of specific types
-    elements.forEach { element in
+    for i in 0..<elements.count {
+      let element = elements[i]
       if element.type == .field {
         if result.last?.type == .field || result.last?.type == .editor {
           let text = result.last!.text
           result = result.dropLast()
-          result.append(ElementModel(type: .editor, text: text))
+          let seperator = (i == elements.count - 1) ? "" : "\n"
+          result.append(ElementModel(type: .editor, text: text + seperator + element.text))
         } else {
           result.append(element)
         }
