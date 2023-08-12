@@ -56,7 +56,7 @@
 		9335715C2A7060A40015DF16 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
 		9352E3BD2A713DCD00F02DB1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9352E3BF2A71479D00F02DB1 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		9360F8F32A6540200065879B /* Daily Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9360F8F32A6540200065879B /* Markdown Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Markdown Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9360F8F62A6540200065879B /* DynamicPlanerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicPlanerApp.swift; sourceTree = "<group>"; };
 		9360F8F82A6540200065879B /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
 		9360F8FA2A6540210065879B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 		9360F8F42A6540200065879B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9360F8F32A6540200065879B /* Daily Planner.app */,
+				9360F8F32A6540200065879B /* Markdown Planner.app */,
 				9360F9032A6540210065879B /* DynamicPlanerTests.xctest */,
 				9360F90D2A6540210065879B /* DynamicPlanerUITests.xctest */,
 			);
@@ -172,9 +172,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9360F8F22A6540200065879B /* DynamicPlaner */ = {
+		9360F8F22A6540200065879B /* Markdown Planner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9360F9172A6540210065879B /* Build configuration list for PBXNativeTarget "DynamicPlaner" */;
+			buildConfigurationList = 9360F9172A6540210065879B /* Build configuration list for PBXNativeTarget "Markdown Planner" */;
 			buildPhases = (
 				9360F8EF2A6540200065879B /* Sources */,
 				9360F8F02A6540200065879B /* Frameworks */,
@@ -184,12 +184,12 @@
 			);
 			dependencies = (
 			);
-			name = DynamicPlaner;
+			name = "Markdown Planner";
 			packageProductDependencies = (
 				9335714A2A705EE70015DF16 /* AlertToast */,
 			);
 			productName = DynamicPlaner;
-			productReference = 9360F8F32A6540200065879B /* Daily Planner.app */;
+			productReference = 9360F8F32A6540200065879B /* Markdown Planner.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9360F9022A6540210065879B /* DynamicPlanerTests */ = {
@@ -267,7 +267,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9360F8F22A6540200065879B /* DynamicPlaner */,
+				9360F8F22A6540200065879B /* Markdown Planner */,
 				9360F9022A6540210065879B /* DynamicPlanerTests */,
 				9360F90C2A6540210065879B /* DynamicPlanerUITests */,
 			);
@@ -344,12 +344,12 @@
 /* Begin PBXTargetDependency section */
 		9360F9052A6540210065879B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9360F8F22A6540200065879B /* DynamicPlaner */;
+			target = 9360F8F22A6540200065879B /* Markdown Planner */;
 			targetProxy = 9360F9042A6540210065879B /* PBXContainerItemProxy */;
 		};
 		9360F90F2A6540210065879B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9360F8F22A6540200065879B /* DynamicPlaner */;
+			target = 9360F8F22A6540200065879B /* Markdown Planner */;
 			targetProxy = 9360F90E2A6540210065879B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -494,7 +494,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.halfspud.DynamicPlaner;
-				PRODUCT_NAME = "Daily Planner";
+				PRODUCT_NAME = "Markdown Planner";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -526,7 +526,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.halfspud.DynamicPlaner;
-				PRODUCT_NAME = "Daily Planner";
+				PRODUCT_NAME = "Markdown Planner";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -621,7 +621,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9360F9172A6540210065879B /* Build configuration list for PBXNativeTarget "DynamicPlaner" */ = {
+		9360F9172A6540210065879B /* Build configuration list for PBXNativeTarget "Markdown Planner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9360F9182A6540210065879B /* Debug */,
