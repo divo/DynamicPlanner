@@ -73,7 +73,7 @@ struct IndexView: View {
     .onAppear {
       NotificationUtil.requestPermission()
       // iCloud failed, using local storage
-      guard FileUtil.getDocumentsDirectory().absoluteString.contains("iCloud~DailyPlanner") else {
+      guard FileUtil.getDocumentsDirectory().absoluteString.contains("iCloud~MarkdownPlanner") else {
         showToast = true
         return
       }
