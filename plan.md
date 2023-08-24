@@ -1,13 +1,17 @@
 # Markdown driven swift UI
--[] Create dynamic UI elements
+-[x] Create dynamic UI elements
     - Text
     - TextField
     - TextArea
     - Checkbox
     - "Hour" - Some abstract structure, no idea what that looks like yet
     - etc
--[] Parse markdown (use a package) and build UI from these
--[] State store backing elements that can be serialized
+-[x] Parse markdown (use a package) and build UI from these
+-[x] State store backing elements that can be serialized
+-[ ] Improve iCloud file sync with NSMetadataQuery etc
+-[ ] Add different views/journals each with their own template
+-[ ] Make text area size dynamic
+-[ ] Improve template editor experience
 
 
 # 1 Parsing
