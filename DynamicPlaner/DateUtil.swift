@@ -38,10 +38,10 @@ struct DateUtil {
   static func filenameToDate(_ filename: String) -> Date {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
-    return dateFormatter.date(from: filename)!
+    return dateFormatter.date(from: filename.dropExtension())!
   }
   
-  static func dateToString(_ date: Date) -> String {
+  static func dateToTime(_ date: Date) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "HH:mm"
     return dateFormatter.string(from: date)
@@ -52,5 +52,21 @@ struct DateUtil {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
     return dateFormatter.string(from: date)
+  }
+  
+  static func dateToFilename(_ date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    return dateFormatter.string(from: date).addExtension()
+  }
+}
+
+extension String {
+  func dropExtension() -> String {
+    return String(self.split(separator: ".md").first!)
+  }
+  
+  func addExtension() -> String {
+    return self + ".md"
   }
 }

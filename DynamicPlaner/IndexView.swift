@@ -31,7 +31,7 @@ struct IndexView: View {
         NavigationLink {
           PlannerView(file: file)
         } label: {
-          Text(file.lastPathComponent)
+          Text(file.lastPathComponent.dropExtension())
         }
       }.navigationTitle("Day Planner")
         .toolbar {
@@ -85,7 +85,7 @@ struct IndexView: View {
   }
   
   func createEntry(date: Date = Date.now) {
-    let filename = FileUtil.dateToFilename(date)
+    let filename = DateUtil.dateToFilename(date)
     if !FileUtil.checkFileExists(filename) {
       FileUtil.createFile(filename)
       files = FileUtil.listDocuments()

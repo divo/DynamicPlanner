@@ -66,18 +66,6 @@ struct FileUtil {
     let url = self.getDocumentsDirectory().appendingPathComponent(filename)
     try! FileManager.default.removeItem(at: url)
   }
-  
-  static func dateToFilename(_ date: Date) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    return dateFormatter.string(from: date)
-  }
-  
-  static func filenameToDate(_ filename: String) -> Date {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    return dateFormatter.date(from: filename)!
-  }
 }
 
 extension URL: Identifiable {
