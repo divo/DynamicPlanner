@@ -81,7 +81,7 @@ class ElementModel: ObservableObject {
     case .editor:
       return "\(text)\n"
     case .notification:
-      return "[\(label)](\(DateUtil.dateToString(date))) \(text)"
+      return "[\(label)](\(DateUtil.dateToTime(date))) \(text)"
     case .addCheck:
       return "+"
     case .empty:
