@@ -42,9 +42,13 @@ struct FileUtil {
         url.lastPathComponent.first != "."
       })
   }
+  
+  static func url(for filename: String, directory: String = default_journal) -> URL {
+    return self.getDocumentsDirectory().appending(path: directory).appendingPathComponent(filename)
+  }
 
-  static func checkFileExists(_ filename: String) -> Bool {
-    let url = self.getDocumentsDirectory().appendingPathComponent(filename)
+  static func checkFileExists(_ url: URL) -> Bool {
+//    let url = self.getDocumentsDirectory().appending(path: directory).appendingPathComponent(filename)
     return FileManager.default.fileExists(atPath: url.path)
   }
 
@@ -57,15 +61,15 @@ struct FileUtil {
     try! viewModel.encode().write(to: url, atomically: true, encoding: .utf8)
   }
   
-  static func createFile(_ filename: String) {
-    let url = self.getDocumentsDirectory().appendingPathComponent(filename)
+  static func createFile(_ url: URL) {
+//    let url = self.getDocumentsDirectory().appendingPathComponent(filename)
     FileManager.default.createFile(atPath: url.path, contents: nil, attributes: nil)
     let emptyTemplate = ViewModel(state: UserDefaults().string(forKey: Constants.templateKey)!, file: url).encode()
     try! emptyTemplate.write(to: url, atomically: true, encoding: .utf8)
   }
   
-  static func deleteFile(_ filename: String) {
-    let url = self.getDocumentsDirectory().appendingPathComponent(filename)
+  static func deleteFile(_ url: URL) {
+//    let url = self.getDocumentsDirectory().appendingPathComponent(filename)
     try! FileManager.default.removeItem(at: url)
   }
 }

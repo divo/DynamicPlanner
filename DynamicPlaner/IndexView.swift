@@ -86,8 +86,9 @@ struct IndexView: View {
   
   func createEntry(date: Date = Date.now) {
     let filename = DateUtil.dateToFilename(date)
-    if !FileUtil.checkFileExists(filename) {
-      FileUtil.createFile(filename)
+    let url = FileUtil.url(for: filename)
+    if !FileUtil.checkFileExists(url) {
+      FileUtil.createFile(url)
       files = FileUtil.listDocuments()
     }
   }
