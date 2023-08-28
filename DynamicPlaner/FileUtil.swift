@@ -8,6 +8,7 @@
 import Foundation
 
 struct FileUtil {
+  static var default_journal = "day_planner"
   static var baseURL: URL = driveURL()
   
   static func setDriveURL() {
@@ -17,6 +18,7 @@ struct FileUtil {
       let exists = FileManager.default.fileExists(atPath: baseURL.absoluteString, isDirectory: &isdirectory)
       if !isdirectory.boolValue || !exists {
         try? FileManager.default.createDirectory(at: baseURL, withIntermediateDirectories: true)
+        try? FileManager.default.createDirectory(at: baseURL.appending(path: default_journal), withIntermediateDirectories: true)
       }
     }
   }
@@ -33,9 +35,9 @@ struct FileUtil {
     return baseURL
   }
  
-  static func listDocuments() -> [URL] {
+  static func listDocuments(directory: String = default_journal) -> [URL] {
     // Let it crash and hope I get a report.
-    try! FileManager.default.contentsOfDirectory(at: self.getDocumentsDirectory(), includingPropertiesForKeys: nil)
+    try! FileManager.default.contentsOfDirectory(at: self.getDocumentsDirectory().appending(path: directory), includingPropertiesForKeys: nil)
       .filter({ url in
         url.lastPathComponent.first != "."
       })
