@@ -79,6 +79,7 @@ struct IndexView: View {
       }
       
       files = FileUtil.listDocuments()
+      MetadataProvider(containerIdentifier: "iCloud.DailyPlanner", url: FileUtil.baseURL)
     }.toast(isPresenting: $showToast){
       AlertToast(displayMode: .alert, type: .error(.orange), title: "iCloud not found, storing files localy")
     }
