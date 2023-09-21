@@ -35,10 +35,10 @@ struct DateUtil {
     return dateFormatter.string(from: Date.now)
   }
   
-  static func filenameToDate(_ filename: String) -> Date {
+  static func filenameToDate(_ filename: String) -> Date? {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
-    return dateFormatter.date(from: filename.dropExtension())!
+    return dateFormatter.date(from: filename.dropExtension())
   }
   
   static func dateToTime(_ date: Date) -> String {

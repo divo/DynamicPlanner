@@ -25,7 +25,9 @@ class IndexViewModel: ObservableObject {
     
     let newFiles = metadataItems.map({ $0.url })
     
-    let filesToFetch = files.difference(from: newFiles)
+    let filesToFetch = files.difference(from: newFiles).filter { url in
+      DateUtil.filenameToDate(url.lastPathComponent) != nil
+    }
     
     filesToFetch.forEach { url in
       // We may not have the file in time for the user to open but worry about solving that later
