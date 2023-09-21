@@ -20,6 +20,27 @@ struct FileUtil {
         try? FileManager.default.createDirectory(at: baseURL, withIntermediateDirectories: true)
         try? FileManager.default.createDirectory(at: baseURL.appending(path: default_journal), withIntermediateDirectories: true)
       }
+      migrateFiles(to: default_journal)
+    }
+  }
+  
+  static func migrateFiles(to: String) {
+    // List all the files in the top level directory
+    do {
+      let urls = try FileManager.default.contentsOfDirectory(at: self.getDocumentsDirectory(), includingPropertiesForKeys: [URLResourceKey.isRegularFileKey])
+        .filter({ url in
+          !url.hasDirectoryPath
+        })
+      
+      try urls.forEach { url in
+        let contents = readFile(url)
+        let filename = url.lastPathComponent.addExtension()
+        let newUrl = self.getDocumentsDirectory().appending(path: to).appending(path: filename)
+        try contents.write(to: newUrl, atomically: true, encoding: .utf8)
+        deleteFile(url)
+      }
+    } catch {
+      print("Failed to run migration")
     }
   }
   
@@ -69,7 +90,6 @@ struct FileUtil {
   }
   
   static func deleteFile(_ url: URL) {
-//    let url = self.getDocumentsDirectory().appendingPathComponent(filename)
     try! FileManager.default.removeItem(at: url)
   }
 }
