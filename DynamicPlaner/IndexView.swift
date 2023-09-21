@@ -10,7 +10,7 @@ import UserNotifications
 import AlertToast
 
 struct IndexView: View {
-  @State var files = FileUtil.listDocuments()
+  @StateObject var viewModel = IndexViewModel()
   @State var showDetails = true
   @State var showingPopover = false
   @State var showConfig = false
@@ -25,15 +25,16 @@ struct IndexView: View {
   
   var body: some View {
     NavigationView {
-      List(files.sorted(by: { l, r in
-        l.lastPathComponent > r.lastPathComponent
-      })) { file in
+      List($viewModel.files.sorted(by: { l, r in
+        l.wrappedValue.lastPathComponent > r.wrappedValue.lastPathComponent
+      })) { $file in
         NavigationLink {
           PlannerView(file: file)
         } label: {
           Text(file.lastPathComponent.dropExtension())
         }
-      }.navigationTitle("Day Planner")
+      }
+      .navigationTitle("Day Planner")
         .toolbar {
           ToolbarItem(placement: .navigationBarTrailing) {
             Image(systemName: "doc.badge.plus")
@@ -78,8 +79,8 @@ struct IndexView: View {
         return
       }
       
-      files = FileUtil.listDocuments()
-//      MetadataProvider(containerIdentifier: "Markdown Planner", url: FileUtil.baseURL)
+      viewModel.files = FileUtil.listDocuments()
+      viewModel.setupMetadataProvider()
     }.toast(isPresenting: $showToast){
       AlertToast(displayMode: .alert, type: .error(.orange), title: "iCloud not found, storing files localy")
     }
@@ -90,7 +91,7 @@ struct IndexView: View {
     let url = FileUtil.url(for: filename)
     if !FileUtil.checkFileExists(url) {
       FileUtil.createFile(url)
-      files = FileUtil.listDocuments()
+      viewModel.files = FileUtil.listDocuments()
     }
   }
 }

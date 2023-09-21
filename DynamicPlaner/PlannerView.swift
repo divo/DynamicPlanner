@@ -55,7 +55,11 @@ struct PlannerView : View {
       if let file = self.file {
         if initialState == "" {
           vm.file = file
-          vm.update(state: FileUtil.readFile(file))
+          guard let contents = FileUtil.readFile(file) else {
+            // TODO: Show an error toast or pop back
+            return
+          }
+          vm.update(state: contents)
         }
       }
     }

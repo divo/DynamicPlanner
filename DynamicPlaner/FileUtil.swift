@@ -33,7 +33,7 @@ struct FileUtil {
         })
       
       try urls.forEach { url in
-        let contents = readFile(url)
+        let contents = readFile(url)!
         let filename = url.lastPathComponent.addExtension()
         let newUrl = self.getDocumentsDirectory().appending(path: to).appending(path: filename)
         try contents.write(to: newUrl, atomically: true, encoding: .utf8)
@@ -74,8 +74,8 @@ struct FileUtil {
   }
 
   // TODO: Handle read/write failures
-  static func readFile(_ url : URL) -> String {
-    try! String(contentsOf: url, encoding: .utf8)
+  static func readFile(_ url : URL) -> String? {
+    try? String(contentsOf: url, encoding: .utf8)
   }
   
   static func writeFile(url: URL, viewModel: ViewModel) {

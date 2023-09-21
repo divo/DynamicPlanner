@@ -5,11 +5,17 @@
 //  Created by Steven Diviney on 24/08/2023.
 //
 
+// After implementing (copying) all of this I realised I can just list the files and
+// call `startDownloadingUbiquitousItem` for anything with an iCloud extension
+// I'm going to keep the MetadataProvider solution though because 1) Files are pushed
+// to the UI using notifications, no need to pull to refresh and 2) If I want to add more
+// advanced iCould features later this seems like the better place to start from
+
 import Foundation
 import Combine
 
 extension Notification.Name {
-  static let sicdMetadataDidChange = Notification.Name("sicdMetadataDidChange")
+  static let mdMetadataDidChange = Notification.Name("mdMetadataDidChange")
 }
 
 class MetadataProvider {
@@ -38,7 +44,7 @@ class MetadataProvider {
       guard notification.object as? NSMetadataQuery === self.metadataQuery else { return }
       var userInfo = MetadataDidChangeUserInfo()
       userInfo[.queryResults] = self.metadataItemList()
-      NotificationCenter.default.post(name: .sicdMetadataDidChange, object: self, userInfo: userInfo)
+      NotificationCenter.default.post(name: .mdMetadataDidChange, object: self, userInfo: userInfo)
     }
     
     metadataQuery.notificationBatchingInterval = 1
