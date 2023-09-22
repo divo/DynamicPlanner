@@ -25,13 +25,11 @@ struct IndexView: View {
   
   var body: some View {
     NavigationView {
-      List($viewModel.files.sorted(by: { l, r in
-        l.wrappedValue.lastPathComponent > r.wrappedValue.lastPathComponent
-      })) { $file in
+      List($viewModel.files, children: \.children) { $file in
         NavigationLink {
-          PlannerView(file: file)
+          PlannerView(file: file.url)
         } label: {
-          Text(file.lastPathComponent.dropExtension())
+          Text(file.description)
         }
       }
       .navigationTitle("Day Planner")
@@ -79,7 +77,7 @@ struct IndexView: View {
         return
       }
       
-      viewModel.files = FileUtil.listDocuments()
+      viewModel.refresh()
       viewModel.setupMetadataProvider()
     }.toast(isPresenting: $showToast){
       AlertToast(displayMode: .alert, type: .error(.orange), title: "iCloud not found, storing files localy")
@@ -91,7 +89,7 @@ struct IndexView: View {
     let url = FileUtil.url(for: filename)
     if !FileUtil.checkFileExists(url) {
       FileUtil.createFile(url)
-      viewModel.files = FileUtil.listDocuments()
+      viewModel.refresh()
     }
   }
 }

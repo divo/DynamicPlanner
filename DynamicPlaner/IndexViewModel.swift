@@ -8,13 +8,22 @@
 import Foundation
 
 class IndexViewModel: ObservableObject {
-  @Published var files: [URL] = FileUtil.listDocuments()
+  @Published var files: [FileItem] = []
+  
   private(set) var metadataProvider: MetadataProvider?
+  
+  init() {
+    files = getFiles()
+  }
   
   func setupMetadataProvider() {
     metadataProvider = MetadataProvider(containerIdentifier: "Markdown Planner", url: FileUtil.baseURL)
     
     NotificationCenter.default.addObserver(self, selector: #selector(self.metadataDidChange(_:)), name: .mdMetadataDidChange, object: nil)
+  }
+  
+  func refresh() {
+    files = getFiles()
   }
   
   @objc
@@ -23,18 +32,30 @@ class IndexViewModel: ObservableObject {
           let userInfo = notification.userInfo as? MetadataProvider.MetadataDidChangeUserInfo,
           let metadataItems = userInfo[.queryResults] else { return }
     
-    let newFiles = metadataItems.map({ $0.url })
+    let newFiles = metadataItems.map({ FileItem(url: $0.url) })
     
-    let filesToFetch = files.difference(from: newFiles).filter { url in
-      DateUtil.filenameToDate(url.lastPathComponent) != nil
+    let filesToFetch = files.difference(from: newFiles).filter { file in
+      DateUtil.filenameToDate(file.url.lastPathComponent) != nil
     }
     
-    filesToFetch.forEach { url in
+    filesToFetch.forEach { file in
       // We may not have the file in time for the user to open but worry about solving that later
-      try? FileManager.default.startDownloadingUbiquitousItem(at: url)
+      try? FileManager.default.startDownloadingUbiquitousItem(at: file.url)
     }
     
     self.files.append(contentsOf: filesToFetch)
+  }
+  
+  private func getFiles() -> [FileItem] {
+    let files = FileUtil.listDocuments().sorted(by: { l, r in
+      l.lastPathComponent > r.lastPathComponent
+    })
+    // Group the files by month, current month should be top level, all other months are nested
+    var fileItems = files.map({ url in
+      FileItem(url: url)
+    })
+    
+    return fileItems
   }
   
 }

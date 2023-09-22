@@ -18,6 +18,7 @@
 		9351E31C2ABC905B00FB0295 /* IndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9351E31B2ABC905B00FB0295 /* IndexViewModel.swift */; };
 		9352E3BE2A713DCD00F02DB1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352E3BD2A713DCD00F02DB1 /* Constants.swift */; };
 		9352E3C02A71479D00F02DB1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352E3BF2A71479D00F02DB1 /* ViewModel.swift */; };
+		9356E4BB2ABDEEC400626F14 /* FileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356E4BA2ABDEEC400626F14 /* FileItem.swift */; };
 		9360F8F72A6540200065879B /* DynamicPlanerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F8F62A6540200065879B /* DynamicPlanerApp.swift */; };
 		9360F8F92A6540200065879B /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F8F82A6540200065879B /* PlannerView.swift */; };
 		9360F8FB2A6540210065879B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9360F8FA2A6540210065879B /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 		9351E31B2ABC905B00FB0295 /* IndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModel.swift; sourceTree = "<group>"; };
 		9352E3BD2A713DCD00F02DB1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9352E3BF2A71479D00F02DB1 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		9356E4BA2ABDEEC400626F14 /* FileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItem.swift; sourceTree = "<group>"; };
 		9360F8F32A6540200065879B /* Markdown Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Markdown Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9360F8F62A6540200065879B /* DynamicPlanerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicPlanerApp.swift; sourceTree = "<group>"; };
 		9360F8F82A6540200065879B /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				937C57A42A70219300C9EB17 /* Views.swift */,
 				937C57A22A70217100C9EB17 /* Models.swift */,
 				9351E31B2ABC905B00FB0295 /* IndexViewModel.swift */,
+				9356E4BA2ABDEEC400626F14 /* FileItem.swift */,
 				933571472A705EAC0015DF16 /* IndexView.swift */,
 				9394CCAC2AB7672C00006931 /* MetadataProvider */,
 				9360F8FA2A6540210065879B /* Assets.xcassets */,
@@ -332,6 +335,7 @@
 				93BE7D2C2A9767E000366B87 /* MetadataProvider.swift in Sources */,
 				933571552A7060190015DF16 /* ConfigView.swift in Sources */,
 				9335715D2A7060A40015DF16 /* CheckToggleStyle.swift in Sources */,
+				9356E4BB2ABDEEC400626F14 /* FileItem.swift in Sources */,
 				9351E31C2ABC905B00FB0295 /* IndexViewModel.swift in Sources */,
 				933571482A705EAC0015DF16 /* IndexView.swift in Sources */,
 				933571512A705F8B0015DF16 /* NotificationUtil.swift in Sources */,
