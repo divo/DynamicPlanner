@@ -9,6 +9,11 @@ import Foundation
 
 class IndexViewModel: ObservableObject {
   @Published var files: [FileItem] = []
+  private var urls: [URL] {
+    FileUtil.listDocuments().sorted(by: { l, r in
+      l.lastPathComponent > r.lastPathComponent
+    })
+  }
   
   private(set) var metadataProvider: MetadataProvider?
   
@@ -32,32 +37,56 @@ class IndexViewModel: ObservableObject {
           let userInfo = notification.userInfo as? MetadataProvider.MetadataDidChangeUserInfo,
           let metadataItems = userInfo[.queryResults] else { return }
     
-    let newFiles = metadataItems.map({ FileItem(url: $0.url) })
+    let newFiles = metadataItems.map({ $0.url })
     
-    let filesToFetch = files.difference(from: newFiles).filter { file in
-      DateUtil.filenameToDate(file.url.lastPathComponent) != nil
+    let filesToFetch = urls.difference(from: newFiles).filter { fileURL in
+      DateUtil.filenameToDate(fileURL.lastPathComponent) != nil
     }
     
-    filesToFetch.forEach { file in
+    filesToFetch.forEach { fileURL in
       // We may not have the file in time for the user to open but worry about solving that later
-      try? FileManager.default.startDownloadingUbiquitousItem(at: file.url)
+      try? FileManager.default.startDownloadingUbiquitousItem(at: fileURL)
     }
     
-    self.files.append(contentsOf: filesToFetch)
+    // This is a little bit hacky, we are downloading the files so can't just
+    // list the disk contents. Instead we append the downloading files
+    // to the list and sort them. Trust the file is downloaded by the time the user
+    // tries to open it
+    // TODO: Add a check for file downloaded when opening
+    var allUrls = urls
+    allUrls.append(contentsOf: filesToFetch)
+    self.files = sortFiles(allUrls)
   }
   
   private func getFiles() -> [FileItem] {
-    let files = FileUtil.listDocuments().sorted(by: { l, r in
-      l.lastPathComponent > r.lastPathComponent
-    })
-    // Group the files by month, current month should be top level, all other months are nested
-    var fileItems = files.map({ url in
+    return sortFiles(urls)
+  }
+  
+  // Group the files by month, current month should be top level, all other months are nested
+  private func sortFiles(_ files: [URL]) -> [FileItem] {
+    let fileItems = urls.map({ url in
       FileItem(url: url)
     })
     
-    return fileItems
+    //Pick out the months
+    let groups = Dictionary(grouping: fileItems) { item in
+      let components = Calendar.current.dateComponents([.month, .year], from: item.date)
+      return "\(components.year!)-\(String(format: "%02d", components.month!))"
+    }
+    
+    // Little bit messy
+    let sortedKeys = groups.keys.sorted().reversed()
+    guard let first = sortedKeys.first else { return [] }
+    var result = groups[first]!
+    
+    for (key) in sortedKeys.dropFirst() {
+      var month = FileItem(name: key)
+      month.children = groups[key]
+      result.append(month)
+    }
+    
+    return result
   }
-  
 }
 
 extension Array where Element: Hashable {
