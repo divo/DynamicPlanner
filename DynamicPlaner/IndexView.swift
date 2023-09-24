@@ -11,6 +11,7 @@ import AlertToast
 
 struct IndexView: View {
   @StateObject var viewModel = IndexViewModel()
+  @StateObject var configViewModel = ConfigViewModel()
   @State var showDetails = true
   @State var showingPopover = false
   @State var showConfig = false
@@ -69,7 +70,7 @@ struct IndexView: View {
           }.frame(width: 400, height: 200)
         }
         .popover(isPresented: $showConfig) {
-          ConfigView().frame(idealWidth: 400, idealHeight: 600)
+          ConfigView(viewModel: configViewModel).frame(idealWidth: 400, idealHeight: 600)
         }
     }
     .accentColor(Style.primaryColor)
@@ -92,7 +93,7 @@ struct IndexView: View {
     let filename = DateUtil.dateToFilename(date)
     let url = FileUtil.url(for: filename)
     if !FileUtil.checkFileExists(url) {
-      FileUtil.createFile(url)
+      FileUtil.createFile(url: url, template: configViewModel.planningTemplate)
       viewModel.refresh()
     }
   }

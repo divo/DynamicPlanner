@@ -53,6 +53,7 @@ class IndexViewModel: ObservableObject {
     // to the list and sort them. Trust the file is downloaded by the time the user
     // tries to open it
     // TODO: Add a check for file downloaded when opening
+    // TODO: Only add to files list if it's in the current directory....
     var allUrls = urls
     allUrls.append(contentsOf: filesToFetch)
     self.files = sortFiles(allUrls)
@@ -64,9 +65,9 @@ class IndexViewModel: ObservableObject {
   
   // Group the files by month, current month should be top level, all other months are nested
   private func sortFiles(_ files: [URL]) -> [FileItem] {
-    let fileItems = urls.map({ url in
-      FileItem(url: url)
-    })
+    let fileItems = files
+      .filter { url in DateUtil.filenameToDate(url.lastPathComponent) != nil } // Filter out the template
+      .map({ url in FileItem(url: url) })
     
     //Pick out the months
     let groups = Dictionary(grouping: fileItems) { item in

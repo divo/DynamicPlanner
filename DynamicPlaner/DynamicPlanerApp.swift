@@ -11,9 +11,6 @@ import SwiftUI
 struct DynamicPlanerApp: App {
   init() {
    FileUtil.setDriveURL()
-   if UserDefaults().string(forKey: Constants.templateKey) == nil {
-      UserDefaults().set(Constants.defaultTemplate, forKey: Constants.templateKey)
-    }
   }
   
   var body: some Scene {

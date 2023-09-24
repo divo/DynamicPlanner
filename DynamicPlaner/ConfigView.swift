@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ConfigView: View {
-  @State var planningTemplate = ""
+  @ObservedObject var viewModel: ConfigViewModel
   @State var dayStart = UserDefaults().object(forKey: "dayStart") as? Date ?? Date.now
   @State var planningTime = UserDefaults().object(forKey: "planningTime") as? Date ?? Date.now
   @State var startNotification = false
@@ -48,14 +48,12 @@ struct ConfigView: View {
         }
       
       VStack {
-        TextEditor(text: $planningTemplate)
+        TextEditor(text: $viewModel.planningTemplate)
       }.padding(10)
-        .onChange(of: planningTemplate) { newValue in
-          UserDefaults().set(planningTemplate, forKey: Constants.templateKey)
+        .onChange(of: viewModel.planningTemplate) { newValue in
+          viewModel.writeTemplate()
         }
     }.onAppear {
-      planningTemplate = UserDefaults().string(forKey: Constants.templateKey) ?? Constants.defaultTemplate
-      
       DispatchQueue.main.async {
         NotificationUtil.checkScheduled(id: "planningTime") { res in self.planningNotification = res }
         NotificationUtil.checkScheduled(id: "dayStart") { res in self.startNotification = res }
@@ -69,12 +67,6 @@ struct ConfigView: View {
       let defaultDate = calendar.date(bySettingHour: time, minute: 0, second: 0, of: Date()) ?? Date()
       date.wrappedValue = defaultDate
     }
-  }
-}
-
-struct ConfigView_Preview: PreviewProvider {
-  static var previews: some View {
-    ConfigView()
   }
 }
 

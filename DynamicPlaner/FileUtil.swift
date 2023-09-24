@@ -81,11 +81,16 @@ struct FileUtil {
   static func writeFile(url: URL, viewModel: ViewModel) {
     try! viewModel.encode().write(to: url, atomically: true, encoding: .utf8)
   }
-  
-  static func createFile(_ url: URL) {
-//    let url = self.getDocumentsDirectory().appendingPathComponent(filename)
+
+  static func writeFile(url: URL, content: String) {
+    try! content.write(to: url, atomically: true, encoding: .utf8)
+  }
+ 
+  static func createFile(url: URL, template: String) {
     FileManager.default.createFile(atPath: url.path, contents: nil, attributes: nil)
-    let emptyTemplate = ViewModel(state: UserDefaults().string(forKey: Constants.templateKey)!, file: url).encode()
+    // Why encode the viewModel instead of just writing the string directly....
+    // The _should_ be the same
+    let emptyTemplate = ViewModel(state: template, file: url).encode()
     try! emptyTemplate.write(to: url, atomically: true, encoding: .utf8)
   }
   
