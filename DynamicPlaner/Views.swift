@@ -93,9 +93,19 @@ struct EditorView: View {
   var focusID: Int
    
   var body: some View {
-    TextEditor(text: $text)
-      .frame(height: 100)
-      .focused($focusedField, equals: focusID)
+    VStack {
+      ScrollView {
+        ZStack(alignment: .topLeading) {
+          Text(text) // This is the hack to get the TextEditor to grow AND shrink as text is added .
+            .padding()
+            .opacity(1)
+          TextEditor(text: $text)
+            .frame(alignment: .leading)
+            .multilineTextAlignment(.leading)
+            .scrollDisabled(true)
+        }
+      }
+    }
   }
 }
 
