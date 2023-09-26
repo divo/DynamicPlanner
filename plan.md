@@ -8,11 +8,11 @@
     - etc
 -[x] Parse markdown (use a package) and build UI from these
 -[x] State store backing elements that can be serialized
--[ ] Improve iCloud file sync with NSMetadataQuery etc
+-[x] Improve iCloud file sync with NSMetadataQuery etc
 -[x] Add file extension
 -[ ] Release osx build
 -[ ] Add different views/journals each with their own template
--[ ] Make text area size dynamic
+-[x] Make text area size dynamic
 -[ ] Improve template editor experience
 
 
