@@ -48,6 +48,7 @@ struct ConfigView: View {
         }
       
       VStack {
+        TextView(text: "Template:")
         TextEditor(text: $viewModel.planningTemplate)
       }.padding(10)
         .onChange(of: viewModel.planningTemplate) { newValue in
