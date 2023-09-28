@@ -14,6 +14,8 @@
 -[ ] Add different views/journals each with their own template
 -[x] Make text area size dynamic
 -[ ] Improve template editor experience
+-[ ] Legend
+-[ ] Parser tests
 
 
 # 1 Parsing
