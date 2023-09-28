@@ -64,13 +64,7 @@ class ViewModel: ObservableObject {
     models.insert(ElementModel(type: .check, text: "", done: false), at: idx)
   }
   
-  private func setDate() {
-    if let file = self.file {
-      self.date = DateUtil.filenameToDate(file.lastPathComponent)
-    }
-  }
-  
-  private func decode(state: String) -> [ElementModel] {
+  internal func decode(state: String) -> [ElementModel] {
     var result: [ElementModel] = []
     let firstPass = firstPass(state: state)
     result = secondPass(elements: firstPass)
@@ -78,6 +72,12 @@ class ViewModel: ObservableObject {
     return result
   }
   
+  private func setDate() {
+    if let file = self.file {
+      self.date = DateUtil.filenameToDate(file.lastPathComponent)
+    }
+  }
+ 
   // Split on newlines, while keeping an element for succesive empty lines
   private func splitLines(_ string: String) -> [String] {
     var result: [String] = []

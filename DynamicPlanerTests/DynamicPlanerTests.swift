@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import DynamicPlaner
+@testable import Markdown_Planner
 
 final class DynamicPlanerTests: XCTestCase {
 

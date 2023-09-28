@@ -18,6 +18,7 @@
 		9351E31C2ABC905B00FB0295 /* IndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9351E31B2ABC905B00FB0295 /* IndexViewModel.swift */; };
 		9352E3BE2A713DCD00F02DB1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352E3BD2A713DCD00F02DB1 /* Constants.swift */; };
 		9352E3C02A71479D00F02DB1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352E3BF2A71479D00F02DB1 /* ViewModel.swift */; };
+		93560F722AC5D07600E9DBF8 /* ParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93560F712AC5D07600E9DBF8 /* ParserTest.swift */; };
 		9356E4BB2ABDEEC400626F14 /* FileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356E4BA2ABDEEC400626F14 /* FileItem.swift */; };
 		935AE7422AC03D27004F7FEE /* ConfigViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935AE7412AC03D27004F7FEE /* ConfigViewModel.swift */; };
 		9360F8F72A6540200065879B /* DynamicPlanerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9360F8F62A6540200065879B /* DynamicPlanerApp.swift */; };
@@ -62,6 +63,7 @@
 		9351E31B2ABC905B00FB0295 /* IndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModel.swift; sourceTree = "<group>"; };
 		9352E3BD2A713DCD00F02DB1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9352E3BF2A71479D00F02DB1 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		93560F712AC5D07600E9DBF8 /* ParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTest.swift; sourceTree = "<group>"; };
 		9356E4BA2ABDEEC400626F14 /* FileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItem.swift; sourceTree = "<group>"; };
 		935AE7412AC03D27004F7FEE /* ConfigViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewModel.swift; sourceTree = "<group>"; };
 		9360F8F32A6540200065879B /* Markdown Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Markdown Planner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				9360F9072A6540210065879B /* DynamicPlanerTests.swift */,
+				93560F712AC5D07600E9DBF8 /* ParserTest.swift */,
 			);
 			path = DynamicPlanerTests;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93560F722AC5D07600E9DBF8 /* ParserTest.swift in Sources */,
 				9360F9082A6540210065879B /* DynamicPlanerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
