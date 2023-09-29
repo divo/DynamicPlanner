@@ -97,13 +97,27 @@ class ViewModel: ObservableObject {
   private func firstPass(state: String) -> [ElementModel] {
    return splitLines(state).map { (string) -> ElementModel in
       let tokens = String(string).split(separator: " ") // Has to be better way than this nonsense
-      let model: ElementModel = {
-        if(string.first == "-") {
-          guard string.count > 4 else { return ElementModel(type: .empty, text: String(string)) }
-          
-          let text = string.count > 5 ? String(string.dropFirst(5)) : ""
-          let done = Array(string)[2] == "x"
-          return ElementModel(type: .check, text: text, done: done)
+     let model: ElementModel = {
+       if(string.first == "-") {
+         // Validate the element is correct
+         // Need to allow slightly ivalid strings, as we can have unlabeled checkboxes
+         if string.count == 5 && (string == "- [ ]" || string == "- [x]") {
+           let done = Array(string)[2] == "x"
+           return ElementModel(type: .check, text: "", done: done)
+         }
+         
+         if string.count < 6 {
+           return empty(string)
+         }
+         
+         let check = string[..<String.Index(utf16Offset: 6, in: string)]
+         guard check == "- [ ] " || check == "- [x] " else {
+           return empty(string)
+         }
+         
+         let text = string.count > 6 ? String(string.dropFirst(6)) : ""
+         let done = Array(string)[2] == "x"
+         return ElementModel(type: .check, text: text, done: done)
         } else if string.first == "#" {
           let text = String(string.drop(while: { c in c == "#" }).drop(while: { c in c == " " }))
           return ElementModel(type: .heading, text: text, weight: tokens.first?.count ?? 1)
@@ -155,4 +169,8 @@ class ViewModel: ObservableObject {
     
     return result
   }
+    
+    private func empty(_ string: String) -> ElementModel {
+      return ElementModel(type: .empty, text: string)
+    }
 }
