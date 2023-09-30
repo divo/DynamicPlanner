@@ -77,7 +77,7 @@ class ElementModel: ObservableObject {
     case .field:
       return text
     case .check:
-      return "-[\(done ? "x": " ")] \(text)"
+      return "- [\(done ? "x": " ")] \(text)"
     case .editor:
       return "\(text)\n"
     case .notification:
