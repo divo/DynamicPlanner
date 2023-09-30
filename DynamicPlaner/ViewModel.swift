@@ -54,6 +54,19 @@ class ViewModel: ObservableObject {
     models.map { vm in vm.toString() }.joined(separator: "\n")
   }
   
+  /**
+   Parse markdown document and update internal [ElementModel] state.
+   - Supports a limited set of markdown with some custom extensions:
+      - `- [ ] (Label)` : Checkbox, if label is omitted it becomes editable
+      - `#(####) : Heading (5 levels)
+   - Extensions to markdown
+      - `\n` (Empty line) : Single line text Inpur field
+      -  `\n\n`(Multiple empty lines) : Expandable text input area
+      - `[label](time)` : Dates as Links sytnax. Can be used to create reminders.
+      - `+`: Plus, a button that adds an empty checkbox one line above.
+   
+   - Invalid markdown will be render an Error element with the offedning line as the element content.
+   */
   func update(state: String) {
     self.models = decode(state: state)
   }
@@ -77,7 +90,7 @@ class ViewModel: ObservableObject {
       self.date = DateUtil.filenameToDate(file.lastPathComponent)
     }
   }
- 
+  
   // Split on newlines, while keeping an element for succesive empty lines
   private func splitLines(_ string: String) -> [String] {
     var result: [String] = []
@@ -95,33 +108,15 @@ class ViewModel: ObservableObject {
   }
   
   private func firstPass(state: String) -> [ElementModel] {
-   return splitLines(state).map { (string) -> ElementModel in
+    return splitLines(state).map { (string) -> ElementModel in
       let tokens = String(string).split(separator: " ") // Has to be better way than this nonsense
-     let model: ElementModel = {
-       if(string.first == "-") {
-         // Validate the element is correct
-         // Need to allow slightly ivalid strings, as we can have unlabeled checkboxes
-         if string.count == 5 && (string == "- [ ]" || string == "- [x]") {
-           let done = Array(string)[2] == "x"
-           return ElementModel(type: .check, text: "", done: done)
-         }
-         
-         if string.count < 6 {
-           return empty(string)
-         }
-         
-         let check = string[..<String.Index(utf16Offset: 6, in: string)]
-         guard check == "- [ ] " || check == "- [x] " else {
-           return empty(string)
-         }
-         
-         let text = string.count > 6 ? String(string.dropFirst(6)) : ""
-         let done = Array(string)[2] == "x"
-         return ElementModel(type: .check, text: text, done: done)
-        } else if string.first == "#" {
+      let model: ElementModel = {
+        if(string.first == "-") { // Checkbox
+          return checkModel(string)
+        } else if string.first == "#" { //Heading
           let text = String(string.drop(while: { c in c == "#" }).drop(while: { c in c == " " }))
           return ElementModel(type: .heading, text: text, weight: tokens.first?.count ?? 1)
-        } else if string.first == "[" {
+        } else if string.first == "[" { // Date
           // I'm sure this will never blow up
           let labelTime = string.dropFirst().split(separator: "]")
           let label = String(labelTime.first ?? "")
@@ -136,9 +131,10 @@ class ViewModel: ObservableObject {
             return ElementModel(type: .notification, text: text, label: label, date: date)
           }
           return ElementModel(type: .heading) // TODO: Handle no date
-        } else if (string.first == "+") { // TODO: Should this be a link or ?
+        } else if (string.first == "+") { // Plus checkbox
+          // TODO: Should this be a link or ?
           return ElementModel(type: .addCheck)
-        } else if string == "" {
+        } else if string == "" { // TextField
           return ElementModel(type: .field)
         } else { //if string.first?.isASCII != nil && string.first!.isASCII {
           return ElementModel(type: .field, text: String(string))
@@ -148,6 +144,31 @@ class ViewModel: ObservableObject {
     }
   }
   
+  private func checkModel(_ string: String) -> ElementModel {
+    // Validate the element is correct
+    // Need to allow slightly ivalid strings, as we can have unlabeled checkboxes
+    if string.count == 5 && (string == "- [ ]" || string == "- [x]") {
+      let done = Array(string)[2] == "x"
+      return ElementModel(type: .check, text: "", done: done)
+    }
+    
+    if string.count < 6 {
+      return empty(string)
+    }
+    
+    let check = string[..<String.Index(utf16Offset: 6, in: string)]
+    guard check == "- [ ] " || check == "- [x] " else {
+      return empty(string)
+    }
+    
+    let text = string.count > 6 ? String(string.dropFirst(6)) : ""
+    let done = Array(string)[2] == "x"
+    return ElementModel(type: .check, text: text, done: done)
+  }
+  
+  /*
+   Collate multiple consecutive TextFields into a single TextArea
+   */
   private func secondPass(elements: [ElementModel]) -> [ElementModel] {
     var result: [ElementModel] = []
     // Merge adjacent elements of specific types
@@ -169,8 +190,8 @@ class ViewModel: ObservableObject {
     
     return result
   }
-    
-    private func empty(_ string: String) -> ElementModel {
-      return ElementModel(type: .empty, text: string)
-    }
+  
+  private func empty(_ string: String) -> ElementModel {
+    return ElementModel(type: .empty, text: string)
+  }
 }
