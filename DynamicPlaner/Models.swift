@@ -13,7 +13,7 @@ class ElementModel: ObservableObject {
     case field
     case check
     case editor
-    case notification // TODO: Cleanup the naming on this element, decide what it is!
+    case link
     case addCheck // Could expand this to be generic in future, for now only adding checkboxes seems to make sense.
     case empty // Handle parsing failures
   }
@@ -23,7 +23,7 @@ class ElementModel: ObservableObject {
 
   @Published var text: String {
     didSet {
-      if self.type == .notification {
+      if self.type == .link {
         if self.text != "" && done {
          let set = setReminder()
           if !set { self.done = false } // Unable to set reminder. This guard shouldn't be needed?
@@ -36,7 +36,7 @@ class ElementModel: ObservableObject {
   }
   @Published var done: Bool {
     didSet {
-      if self.type == .notification {
+      if self.type == .link {
         if self.done {
           let set = setReminder()
           if !set { self.done = false } // Unable to set reminder. This guard shouldn't be needed?
@@ -62,7 +62,7 @@ class ElementModel: ObservableObject {
   }
   
   func checkNotificationScheduled() {
-    if type == .notification {
+    if type == .link {
       NotificationUtil.checkScheduled(id: DateUtil.dateToNotificationID(date)) { res in
         self.done = res
       }
@@ -80,7 +80,7 @@ class ElementModel: ObservableObject {
       return "- [\(done ? "x": " ")] \(text)"
     case .editor:
       return "\(text)\n"
-    case .notification:
+    case .link:
       return "[\(label)](\(DateUtil.dateToTime(date))) \(text)"
     case .addCheck:
       return "+"

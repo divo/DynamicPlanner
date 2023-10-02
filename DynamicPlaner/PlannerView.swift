@@ -32,7 +32,7 @@ struct PlannerView : View {
       CheckBoxView(text: vm.text, done: vm.done, focusedField: _focusedField, focusID: focusID!)
     case .editor:
       EditorView(text: vm.text, focusedField: _focusedField, focusID: focusID!)
-    case .notification:
+    case .link:
       NotificationView(label: vm.label.wrappedValue, text: vm.text, notification: vm.done, focusID: focusID!)
     case .addCheck:
       AddCheckView(addElementCallback: {

@@ -20,7 +20,7 @@ class ViewModel: ObservableObject {
     get {
       var idx = 0
       return models.map { element in
-        if element.type == .check || element.type == .field || element.type == .editor || element.type == .notification {
+        if element.type == .check || element.type == .field || element.type == .editor || element.type == .link {
           idx += 1 //Bit unintuaive but it's only the order that matters
           return idx
         } else {
@@ -173,9 +173,9 @@ class ViewModel: ObservableObject {
     
     if let baseDate = self.date,
        let date = DateUtil.timeToDate(baseDate: baseDate, time: time) {
-      return ElementModel(type: .notification, text: text, label: label, date: date)
+      return ElementModel(type: .link, text: text, label: label, date: date)
     }
-    return ElementModel(type: .heading) // TODO: Handle no date
+    return ElementModel(type: .empty, text: "Absolute dates not supported: \(string)") // TODO: Handle no date
   }
   
   /*
