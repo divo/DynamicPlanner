@@ -13,7 +13,7 @@ class ElementModel: ObservableObject {
     case field
     case check
     case editor
-    case notification
+    case notification // TODO: Cleanup the naming on this element, decide what it is!
     case addCheck // Could expand this to be generic in future, for now only adding checkboxes seems to make sense.
     case empty // Handle parsing failures
   }

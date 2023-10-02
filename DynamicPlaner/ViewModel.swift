@@ -117,20 +117,7 @@ class ViewModel: ObservableObject {
           let text = String(string.drop(while: { c in c == "#" }).drop(while: { c in c == " " }))
           return ElementModel(type: .heading, text: text, weight: tokens.first?.count ?? 1)
         } else if string.first == "[" { // Date
-          // I'm sure this will never blow up
-          let labelTime = string.dropFirst().split(separator: "]")
-          let label = String(labelTime.first ?? "")
-          let time = String((labelTime[1].split(separator: "(").first?.split(separator: ")"))?.first ?? "")
-          let remaining = labelTime[1].split(separator: ")")
-          var text = ""
-          if remaining.count > 1 {
-            text = String(remaining.last ?? "")
-          }
-          if let baseDate = self.date,
-             let date = DateUtil.timeToDate(baseDate: baseDate, time: time) {
-            return ElementModel(type: .notification, text: text, label: label, date: date)
-          }
-          return ElementModel(type: .heading) // TODO: Handle no date
+          return linkModel(string)
         } else if (string.first == "+") { // Plus checkbox
           // TODO: Should this be a link or ?
           return ElementModel(type: .addCheck)
@@ -164,6 +151,31 @@ class ViewModel: ObservableObject {
     let text = string.count > 6 ? String(string.dropFirst(6)) : ""
     let done = Array(string)[2] == "x"
     return ElementModel(type: .check, text: text, done: done)
+  }
+  
+  /*
+    Parse []() markdown links
+    Only dates in the future are supported.
+    Dates must written as HH:MM. The complete date is formed by adding
+    the time component to the date the model entry represents
+  */
+  private func linkModel(_ string: String) -> ElementModel {
+    // I'm sure this will never blow up
+    let labelTime = string.dropFirst().split(separator: "]")
+    let label = String(labelTime.first ?? "")
+
+    let time = String((labelTime[1].split(separator: "(").first?.split(separator: ")"))?.first ?? "")
+    let remaining = labelTime[1].split(separator: ")")
+    var text = ""
+    if remaining.count > 1 {
+      text = String(remaining.last ?? "")
+    }
+    
+    if let baseDate = self.date,
+       let date = DateUtil.timeToDate(baseDate: baseDate, time: time) {
+      return ElementModel(type: .notification, text: text, label: label, date: date)
+    }
+    return ElementModel(type: .heading) // TODO: Handle no date
   }
   
   /*
