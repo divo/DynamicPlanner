@@ -56,7 +56,7 @@ final class ParserTest: XCTestCase {
     vm.date = Date(timeIntervalSince1970: 0)
     let models = vm.decode(state: "[8](08:00) Morning\n")
 
-    XCTAssertEqual(models.first?.type, .notification)
+    XCTAssertEqual(models.first?.type, .link)
     XCTAssertEqual(models.first?.date.description, "1970-01-01 08:00:00 +0000")
     XCTAssertEqual(models.first?.text, " Morning")
     XCTAssertEqual(models.first?.label, "8")
@@ -73,6 +73,11 @@ final class ParserTest: XCTestCase {
   
   func testLinkModelInvalidDates() throws {
     vm.date = Date(timeIntervalSince1970: 0)
+    
+    XCTAssertEqual(vm.decode(state: "[8](2023-01-01 08:00)\n").first?.type, .empty)
+    XCTAssertEqual(vm.decode(state: "[8](2023-01-01 08:00)\n").first?.text, "Absolute dates not supported: [8](2023-01-01 08:00)")
+    XCTAssertEqual(vm.decode(state: "[8](2023-01-01)\n").first?.type, .empty)
+    XCTAssertEqual(vm.decode(state: "[8](01-01 08:00)\n").first?.type, .empty)
     
   }
 }
