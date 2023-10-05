@@ -49,7 +49,17 @@ struct ConfigView: View {
       
       VStack {
         TextView(text: "Template:")
-        TextEditor(text: $viewModel.planningTemplate)
+        ScrollView {
+          ZStackLayout(alignment: .topLeading) {
+            Text(viewModel.planningTemplate) // This is the hack to get the TextEditor to grow AND shrink as text is added .
+              .padding()
+              .opacity(1)
+            TextEditor(text: $viewModel.planningTemplate)
+              .frame(alignment: .leading)
+              .multilineTextAlignment(.leading)
+              .scrollDisabled(true)
+          }
+        }
       }.padding(10)
         .onChange(of: viewModel.planningTemplate) { newValue in
           viewModel.writeTemplate()
