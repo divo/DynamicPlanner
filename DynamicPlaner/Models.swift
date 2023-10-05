@@ -79,9 +79,9 @@ class ElementModel: ObservableObject {
     case .check:
       return "- [\(done ? "x": " ")] \(text)"
     case .editor:
-      return "\(text)\n"
+      return "\(text)"
     case .link:
-      return "[\(label)](\(DateUtil.dateToTime(date))) \(text)"
+      return "[\(label)](\(DateUtil.dateToTime(date)))\(text)"
     case .addCheck:
       return "+"
     case .empty:
