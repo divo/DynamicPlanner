@@ -33,6 +33,8 @@ struct FileUtil {
         })
       
       try urls.forEach { url in
+        guard url.lastPathComponent.caseInsensitiveCompare(".DS_Store") != .orderedSame &&
+          url.lastPathComponent.contains("icloud") != true else { return }
         let contents = readFile(url)!
         let filename = url.lastPathComponent.addExtension()
         let newUrl = self.getDocumentsDirectory().appending(path: to).appending(path: filename)
