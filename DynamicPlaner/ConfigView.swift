@@ -19,6 +19,7 @@ struct ConfigView: View {
   @State var planningTime = UserDefaults().object(forKey: "planningTime") as? Date ?? Date.now
   @State var startNotification = false
   @State var planningNotification = false
+  @State var legendPopover = false
 
   var body: some View {
     List {
@@ -61,18 +62,26 @@ struct ConfigView: View {
         }
       
       VStack {
-        VStack {
-          Text("Legend")
-          LegendItem(name: "Heading", text: "#")
-          LegendItem(name: "Checkbox", text: "- [ ] ")
-          LegendItem(name: "Text field", text: "\\n")
-          LegendItem(name: "Multi line text field", text: "\\n\\n")
-          LegendItem(name: "Reminder", text: "[label](time)")
-          LegendItem(name: "Create empty checkbox", text: "+")
-        }.background(Color(uiColor: UIColor.systemGray6))
-            
-
-        TextView(text: "Template:").padding([.top], 10)
+        HStack {
+          TextView(text: "Template:")
+          Button(action: {
+            legendPopover = true
+          }, label: {
+            Image(systemName: "info.circle")
+          }).popover(isPresented: $legendPopover, content: {
+            VStack {
+              Text("Legend")
+              LegendItem(name: "Heading", text: "#")
+              LegendItem(name: "Checkbox", text: "- [ ] ")
+              LegendItem(name: "Text field", text: "\\n")
+              LegendItem(name: "Multi line text field", text: "\\n\\n")
+              LegendItem(name: "Reminder", text: "[label](time)")
+              LegendItem(name: "Create empty checkbox", text: "+")
+            }
+            .padding(20)
+            Spacer()
+          })
+        }
         ScrollView {
           ZStackLayout(alignment: .topLeading) {
             Text(viewModel.planningTemplate) // This is the hack to get the TextEditor to grow AND shrink as text is added .
