@@ -42,7 +42,7 @@ struct PlannerView : View {
       EmptyView(text: vm.text.wrappedValue)
     }
   }
-  
+
   var body: some View {
     VStack {
       List {
@@ -63,5 +63,11 @@ struct PlannerView : View {
         }
       }
     }
+  }
+}
+
+struct PlannerView_Preview: PreviewProvider {
+  static var previews: some View {
+    PlannerView(state: "# Test\n\n")
   }
 }
