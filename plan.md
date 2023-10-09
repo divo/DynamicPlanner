@@ -1,21 +1,22 @@
 # Markdown driven swift UI
--[x] Create dynamic UI elements
-    - Text
-    - TextField
-    - TextArea
-    - Checkbox
-    - "Hour" - Some abstract structure, no idea what that looks like yet
-    - etc
--[x] Parse markdown (use a package) and build UI from these
--[x] State store backing elements that can be serialized
--[x] Improve iCloud file sync with NSMetadataQuery etc
--[x] Add file extension
--[ ] Release osx build
--[ ] Add different views/journals each with their own template
--[x] Make text area size dynamic
--[ ] Improve template editor experience
--[ ] Legend
--[ ] Parser tests
+- [x] Create dynamic UI elements
+     - Text
+     - TextField
+     - TextArea
+     - Checkbox
+     - "Hour" - Some abstract structure, no idea what that looks like yet
+     - etc
+- [x] Parse markdown (use a package) and build UI from these
+- [x] State store backing elements that can be serialized
+- [x] Improve iCloud file sync with NSMetadataQuery etc
+- [x] Add file extension
+- [ ] Release osx build
+- [ ] Add different views/journals each with their own template
+- [x] Make text area size dynamic
+- [ ] Improve template editor experience
+- [x] Legend
+- [x] Parser tests
+~~- [ ] Project website~~ Scratch that, I don't need to manage a bunch of sites and domains. Use the gallery approach on my personal site but spend some time on a nicer theme
 
 
 # 1 Parsing
