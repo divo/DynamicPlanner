@@ -27,13 +27,9 @@ struct IndexView: View {
   var body: some View {
     NavigationView {
       List($viewModel.files, children: \.children) { $file in
-        if file.isLeaf { // Correct way to do this is two subtypes but types are for nerds. I'm still asking the same question
-          NavigationLink {
-            PlannerView(file: file.url!)
-          } label: {
-            Text(file.description)
-          }
-        } else {
+        NavigationLink {
+          PlannerView(file: file.url)
+        } label: {
           Text(file.description)
         }
       }
