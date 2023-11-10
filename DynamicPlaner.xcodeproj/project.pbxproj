@@ -17,7 +17,7 @@
 		9335715D2A7060A40015DF16 /* CheckToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9335715C2A7060A40015DF16 /* CheckToggleStyle.swift */; };
 		9351E31C2ABC905B00FB0295 /* IndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9351E31B2ABC905B00FB0295 /* IndexViewModel.swift */; };
 		9352E3BE2A713DCD00F02DB1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352E3BD2A713DCD00F02DB1 /* Constants.swift */; };
-		9352E3C02A71479D00F02DB1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352E3BF2A71479D00F02DB1 /* ViewModel.swift */; };
+		9352E3C02A71479D00F02DB1 /* PlannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352E3BF2A71479D00F02DB1 /* PlannerViewModel.swift */; };
 		93560F722AC5D07600E9DBF8 /* ParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93560F712AC5D07600E9DBF8 /* ParserTest.swift */; };
 		9356E4BB2ABDEEC400626F14 /* FileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356E4BA2ABDEEC400626F14 /* FileItem.swift */; };
 		935AE7422AC03D27004F7FEE /* ConfigViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935AE7412AC03D27004F7FEE /* ConfigViewModel.swift */; };
@@ -62,7 +62,7 @@
 		9335715C2A7060A40015DF16 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
 		9351E31B2ABC905B00FB0295 /* IndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModel.swift; sourceTree = "<group>"; };
 		9352E3BD2A713DCD00F02DB1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		9352E3BF2A71479D00F02DB1 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		9352E3BF2A71479D00F02DB1 /* PlannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewModel.swift; sourceTree = "<group>"; };
 		93560F712AC5D07600E9DBF8 /* ParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTest.swift; sourceTree = "<group>"; };
 		9356E4BA2ABDEEC400626F14 /* FileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItem.swift; sourceTree = "<group>"; };
 		935AE7412AC03D27004F7FEE /* ConfigViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewModel.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 				9335714E2A705F130015DF16 /* FileUtil.swift */,
 				9360F8F62A6540200065879B /* DynamicPlanerApp.swift */,
 				9360F8F82A6540200065879B /* PlannerView.swift */,
-				9352E3BF2A71479D00F02DB1 /* ViewModel.swift */,
+				9352E3BF2A71479D00F02DB1 /* PlannerViewModel.swift */,
 				93D314A12A739ED5005CA042 /* DateUtil.swift */,
 				937C57A42A70219300C9EB17 /* Views.swift */,
 				937C57A22A70217100C9EB17 /* Models.swift */,
@@ -338,7 +338,7 @@
 				933571572A7060480015DF16 /* ViewUtil.swift in Sources */,
 				9360F8F92A6540200065879B /* PlannerView.swift in Sources */,
 				935AE7422AC03D27004F7FEE /* ConfigViewModel.swift in Sources */,
-				9352E3C02A71479D00F02DB1 /* ViewModel.swift in Sources */,
+				9352E3C02A71479D00F02DB1 /* PlannerViewModel.swift in Sources */,
 				93BE7D2C2A9767E000366B87 /* MetadataProvider.swift in Sources */,
 				933571552A7060190015DF16 /* ConfigView.swift in Sources */,
 				9335715D2A7060A40015DF16 /* CheckToggleStyle.swift in Sources */,

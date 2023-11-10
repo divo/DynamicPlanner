@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ViewModel: ObservableObject {
+class PlannerViewModel: ObservableObject {
   @Published var models: [ElementModel] {
     didSet {
       if let file = file {

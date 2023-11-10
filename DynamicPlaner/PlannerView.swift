@@ -10,7 +10,7 @@ import SwiftUI
 struct PlannerView : View {
   let file: URL?
   var initialState: String = "" //TODO: Wire this up so I can live-preview the template
-  @StateObject var vm: ViewModel = ViewModel()
+  @StateObject var vm: PlannerViewModel = PlannerViewModel()
   @FocusState var focusedField: Int?
   
   init(file: URL) {

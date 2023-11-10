@@ -10,7 +10,7 @@ import XCTest
 @testable import Markdown_Planner
 final class ParserTest: XCTestCase {
   
-  let vm = ViewModel()
+  let vm = PlannerViewModel()
   
   // Minimal template requires at least 2 lines to parse correctly
   // Not a limitation I care about
