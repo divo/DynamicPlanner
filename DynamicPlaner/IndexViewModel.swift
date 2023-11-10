@@ -39,9 +39,11 @@ class IndexViewModel: ObservableObject {
     
     let newFiles = metadataItems.map({ $0.url })
     
-    let filesToFetch = urls.difference(from: newFiles).filter { fileURL in
-      DateUtil.filenameToDate(fileURL.lastPathComponent) != nil
-    }
+    let filesToFetch =
+          newFiles.subtract(from: urls)
+                  .filter { fileURL in
+                    DateUtil.filenameToDate(fileURL.lastPathComponent) != nil
+                  }
     
     filesToFetch.forEach { fileURL in
       // We may not have the file in time for the user to open but worry about solving that later
@@ -91,9 +93,9 @@ class IndexViewModel: ObservableObject {
 }
 
 extension Array where Element: Hashable {
-    func difference(from other: [Element]) -> [Element] {
-        let thisSet = Set(self)
-        let otherSet = Set(other)
-        return Array(thisSet.symmetricDifference(otherSet))
+  func subtract(from other: [Element]) -> [Element] {
+      let thisSet = Set(self)
+      let otherSet = Set(other)
+      return Array(thisSet.subtracting(otherSet))
     }
 }
