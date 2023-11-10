@@ -172,7 +172,8 @@ class PlannerViewModel: ObservableObject {
     }
     
     if let baseDate = self.date,
-       let date = DateUtil.timeToDate(baseDate: baseDate, time: time) {
+       
+        let date = DateUtil.timeToDate(baseDate: baseDate, time: time) {
       return ElementModel(type: .link, text: text, label: label, date: date)
     }
     return ElementModel(type: .empty, text: "Absolute dates not supported: \(string)") // TODO: Handle no date

@@ -41,23 +41,27 @@ struct DateUtil {
     return dateFormatter.date(from: filename.dropExtension())
   }
   
-  static func dateToTime(_ date: Date) -> String {
+
+}
+
+extension Date {
+  func toFilename() -> String {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "HH:mm"
-    return dateFormatter.string(from: date)
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    return dateFormatter.string(from: self).addExtension()
   }
   
   // I don't want to figure out some way to generate IDs, this will do
-  static func dateToNotificationID(_ date: Date) -> String {
+  func toNotificationID() -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-    return dateFormatter.string(from: date)
+    return dateFormatter.string(from: self)
   }
   
-  static func dateToFilename(_ date: Date) -> String {
+  func toTime() -> String {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    return dateFormatter.string(from: date).addExtension()
+    dateFormatter.dateFormat = "HH:mm"
+    return dateFormatter.string(from: self)
   }
 }
 

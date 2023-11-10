@@ -63,7 +63,7 @@ class ElementModel: ObservableObject {
   
   func checkNotificationScheduled() {
     if type == .link {
-      NotificationUtil.checkScheduled(id: DateUtil.dateToNotificationID(date)) { res in
+      NotificationUtil.checkScheduled(id: date.toNotificationID()) { res in
         self.done = res
       }
     }
@@ -81,7 +81,7 @@ class ElementModel: ObservableObject {
     case .editor:
       return "\(text)"
     case .link:
-      return "[\(label)](\(DateUtil.dateToTime(date)))\(text)"
+      return "[\(label)](\(date.toTime()))\(text)"
     case .addCheck:
       return "+"
     case .empty:
@@ -91,9 +91,9 @@ class ElementModel: ObservableObject {
   
   func setReminder() -> Bool {
     let noteText = (self.text != "" ? self.text : self.label)
-    return NotificationUtil.scheduleNotification(id: DateUtil.dateToNotificationID(date), message: noteText, date: date)
+    return NotificationUtil.scheduleNotification(id: date.toNotificationID(), message: noteText, date: date)
   }
   func removeReminder() {
-    NotificationUtil.removeNotification(id: DateUtil.dateToNotificationID(date))
+    NotificationUtil.removeNotification(id: date.toNotificationID())
   }
 }

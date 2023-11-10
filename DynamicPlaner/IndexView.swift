@@ -87,8 +87,7 @@ struct IndexView: View {
   }
   
   func createEntry(date: Date = Date.now) {
-    let filename = DateUtil.dateToFilename(date)
-    let url = FileUtil.url(for: filename)
+    let url = FileUtil.url(for: date.toFilename())
     if !FileUtil.checkFileExists(url) {
       FileUtil.createFile(url: url, template: configViewModel.planningTemplate)
       viewModel.refresh()
