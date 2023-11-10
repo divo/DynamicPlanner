@@ -51,6 +51,17 @@ struct PlannerView : View {
           }
         }
       }
+    .navigationTitle(file?.lastPathComponent.toDate()?.toFilename().dropExtension() ?? "")
+    .toolbar {
+      ToolbarItem(placement: .topBarTrailing) {
+        NavigationLink {
+          RawFileEditorView(file: self.file!)
+        } label: {
+          Image(systemName: "square.and.pencil")
+            .foregroundColor(.accentColor)
+        }
+      }
+    }
     .onAppear {
       if let file = self.file {
         if initialState == "" {

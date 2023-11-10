@@ -15,6 +15,7 @@
 		933571552A7060190015DF16 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933571542A7060190015DF16 /* ConfigView.swift */; };
 		933571572A7060480015DF16 /* ViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933571562A7060480015DF16 /* ViewUtil.swift */; };
 		9335715D2A7060A40015DF16 /* CheckToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9335715C2A7060A40015DF16 /* CheckToggleStyle.swift */; };
+		9337AC1C2AFE7273001C461B /* RawFileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9337AC1B2AFE7273001C461B /* RawFileEditorView.swift */; };
 		9351E31C2ABC905B00FB0295 /* IndexViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9351E31B2ABC905B00FB0295 /* IndexViewModel.swift */; };
 		9352E3BE2A713DCD00F02DB1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352E3BD2A713DCD00F02DB1 /* Constants.swift */; };
 		9352E3C02A71479D00F02DB1 /* PlannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352E3BF2A71479D00F02DB1 /* PlannerViewModel.swift */; };
@@ -60,6 +61,7 @@
 		933571542A7060190015DF16 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
 		933571562A7060480015DF16 /* ViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtil.swift; sourceTree = "<group>"; };
 		9335715C2A7060A40015DF16 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
+		9337AC1B2AFE7273001C461B /* RawFileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawFileEditorView.swift; sourceTree = "<group>"; };
 		9351E31B2ABC905B00FB0295 /* IndexViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewModel.swift; sourceTree = "<group>"; };
 		9352E3BD2A713DCD00F02DB1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9352E3BF2A71479D00F02DB1 /* PlannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewModel.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				9360F8F62A6540200065879B /* DynamicPlanerApp.swift */,
 				9360F8F82A6540200065879B /* PlannerView.swift */,
 				9352E3BF2A71479D00F02DB1 /* PlannerViewModel.swift */,
+				9337AC1B2AFE7273001C461B /* RawFileEditorView.swift */,
 				93D314A12A739ED5005CA042 /* DateUtil.swift */,
 				937C57A42A70219300C9EB17 /* Views.swift */,
 				937C57A22A70217100C9EB17 /* Models.swift */,
@@ -333,6 +336,7 @@
 			files = (
 				937C57A52A70219300C9EB17 /* Views.swift in Sources */,
 				9335714F2A705F130015DF16 /* FileUtil.swift in Sources */,
+				9337AC1C2AFE7273001C461B /* RawFileEditorView.swift in Sources */,
 				9335714D2A705EFB0015DF16 /* Style.swift in Sources */,
 				937C57A32A70217100C9EB17 /* Models.swift in Sources */,
 				933571572A7060480015DF16 /* ViewUtil.swift in Sources */,
