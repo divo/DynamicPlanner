@@ -44,7 +44,6 @@ struct PlannerView : View {
   }
   
   var body: some View {
-    NavigationView {
       VStack {
         List {
           ForEach(0..<$vm.models.count, id: \.self) { idx in
@@ -52,8 +51,6 @@ struct PlannerView : View {
           }
         }
       }
-    }.navigationTitle(file?.lastPathComponent.toDate()?.toFilename().dropExtension() ?? "")
-      
     .onAppear {
       if let file = self.file {
         if initialState == "" {
