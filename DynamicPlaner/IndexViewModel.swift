@@ -45,11 +45,15 @@ class IndexViewModel: ObservableObject {
                     fileURL.lastPathComponent.toDate() != nil
                   }
     
+    if filesToFetch.isEmpty {
+      return
+    }
+      
     filesToFetch.forEach { fileURL in
       // We may not have the file in time for the user to open but worry about solving that later
       try? FileManager.default.startDownloadingUbiquitousItem(at: fileURL)
     }
-    
+   
     // This is a little bit hacky, we are downloading the files so can't just
     // list the disk contents. Instead we append the downloading files
     // to the list and sort them. Trust the file is downloaded by the time the user
