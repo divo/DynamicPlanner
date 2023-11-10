@@ -14,7 +14,6 @@ struct IndexView: View {
   @StateObject var configViewModel = ConfigViewModel()
   @State var showDetails = true
   @State var showingPopover = false
-  @State var showConfig = false
   @State var selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: Date.now)!
   @State private var showToast = false
   
@@ -50,12 +49,13 @@ struct IndexView: View {
               }
           }
           ToolbarItem(placement: .navigationBarLeading) {
-              Button {
-                showConfig = true
-              } label: {
-                Image(systemName: "gear")
-              }
+            NavigationLink {
+              ConfigView(viewModel: configViewModel)
+              //                .frame(idealWidth: 400, idealHeight: 600)
+            } label: {
+              Image(systemName: "gear")
             }
+          }                                                                  
         }.popover(isPresented: $showingPopover) {
           List {
             VStack {
@@ -68,9 +68,6 @@ struct IndexView: View {
               }
             }
           }.frame(width: 400, height: 200)
-        }
-        .popover(isPresented: $showConfig) {
-          ConfigView(viewModel: configViewModel).frame(idealWidth: 400, idealHeight: 600)
         }
     }
     .accentColor(Style.primaryColor)
