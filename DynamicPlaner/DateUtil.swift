@@ -34,14 +34,6 @@ struct DateUtil {
     dateFormatter.dateFormat = "yyyy-MM-dd"
     return dateFormatter.string(from: Date.now)
   }
-  
-  static func filenameToDate(_ filename: String) -> Date? {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    return dateFormatter.date(from: filename.dropExtension())
-  }
-  
-
 }
 
 extension Date {
@@ -72,5 +64,11 @@ extension String {
   
   func addExtension() -> String {
     return self + ".md"
+  }
+  
+  func toDate() -> Date? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    return dateFormatter.date(from: self.dropExtension())
   }
 }

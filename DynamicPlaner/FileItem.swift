@@ -27,7 +27,7 @@ struct FileItem: Hashable, Identifiable, CustomStringConvertible {
   }
   
   var date: Date {
-    DateUtil.filenameToDate(name.dropExtension())!
+    name.dropExtension().toDate()!
   }
   
   init(url: URL) {

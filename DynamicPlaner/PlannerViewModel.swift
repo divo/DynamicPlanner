@@ -87,7 +87,7 @@ class PlannerViewModel: ObservableObject {
   
   private func setDate() {
     if let file = self.file {
-      self.date = DateUtil.filenameToDate(file.lastPathComponent)
+      self.date = file.lastPathComponent.toDate()
     }
   }
   
@@ -172,7 +172,6 @@ class PlannerViewModel: ObservableObject {
     }
     
     if let baseDate = self.date,
-       
         let date = DateUtil.timeToDate(baseDate: baseDate, time: time) {
       return ElementModel(type: .link, text: text, label: label, date: date)
     }

@@ -42,7 +42,7 @@ class IndexViewModel: ObservableObject {
     let filesToFetch =
           newFiles.subtract(from: urls)
                   .filter { fileURL in
-                    DateUtil.filenameToDate(fileURL.lastPathComponent) != nil
+                    fileURL.lastPathComponent.toDate() != nil
                   }
     
     filesToFetch.forEach { fileURL in
@@ -68,7 +68,7 @@ class IndexViewModel: ObservableObject {
   // Group the files by month, current month should be top level, all other months are nested
   private func sortFiles(_ files: [URL]) -> [FileItem] {
     let fileItems = files
-      .filter { url in DateUtil.filenameToDate(url.lastPathComponent) != nil } // Filter out the template
+      .filter { url in url.lastPathComponent.toDate() != nil } // Filter out the template
       .map({ url in FileItem(url: url) })
     
     //Pick out the months

@@ -44,14 +44,17 @@ struct PlannerView : View {
   }
   
   var body: some View {
-    VStack {
-      List {
-        ForEach(0..<$vm.models.count, id: \.self) { idx in
-          render(vm: $vm.models[idx], focusID: vm.focusIDs[idx], index: idx)
+    NavigationView {
+      VStack {
+        List {
+          ForEach(0..<$vm.models.count, id: \.self) { idx in
+            render(vm: $vm.models[idx], focusID: vm.focusIDs[idx], index: idx)
+          }
         }
       }
+    }.navigationTitle(file?.lastPathComponent.toDate()?.toFilename().dropExtension() ?? "")
       
-    }.onAppear {
+    .onAppear {
       if let file = self.file {
         if initialState == "" {
           vm.file = file
